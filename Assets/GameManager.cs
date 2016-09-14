@@ -5,9 +5,9 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
 	private GameStates currentState;
-	private Controller.Controls controller = null;
+	//private Controller.Controls controller = null;
 
-	public enum GameStates {CAMERA, BUILD, COLLECT, DISTRIBUTE, DEFEND};
+	public enum GameStates {CAMERA, BUILD, COLLECT, DISTRIBUTE, DEFEND, INTRO};
 
 	//Awake is always called before any Start functions
 	void Awake()
@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 
 		// Initializes the game controller (XBox, keyboard, Playstation, etc...)
-		if (controller == null) {
+		/*if (controller == null) {
 			controller = new Controller.Controls ();
-		}
+		}*/
 			
 	}
 

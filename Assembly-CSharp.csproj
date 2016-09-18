@@ -45,8 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Build.cs" />
      <Compile Include="Assets\CameraMove.cs" />
+     <Compile Include="Assets\Collect.cs" />
      <Compile Include="Assets\Controller.cs" />
+     <Compile Include="Assets\Distribute.cs" />
      <Compile Include="Assets\GameManager.cs" />
      <Compile Include="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Effects\ImageEffects\Scripts\Antialiasing.cs" />
@@ -87,6 +90,8 @@
      <Compile Include="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Effects\ImageEffects\Scripts\Twirl.cs" />
      <Compile Include="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
      <Compile Include="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
+     <Compile Include="Assets\HivePlacement.cs" />
+     <Compile Include="Assets\Intro.cs" />
      <None Include="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />

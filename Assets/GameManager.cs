@@ -5,7 +5,12 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
 	private GameStates currentState;
-	//private Controller.Controls controller = null;
+	public static GameObject canvas;
+
+	public static GameObject introPanel;
+	public static GameObject buildPanel;
+	public static GameObject collectPanel;
+	public static GameObject distributePanel;
 
 	public enum GameStates {CAMERA, BUILD, COLLECT, DISTRIBUTE, DEFEND, INTRO};
 
@@ -27,28 +32,43 @@ public class GameManager : MonoBehaviour {
 		//Sets this to not be destroyed when reloading scene
 		DontDestroyOnLoad(gameObject);
 
-		// Initializes the game controller (XBox, keyboard, Playstation, etc...)
-		/*if (controller == null) {
-			controller = new Controller.Controls ();
-		}*/
-			
 	}
 
 	// Use this for initialization
 	void Start () {
-		currentState = GameStates.CAMERA;
+		//canvas = GameObject.FindGameObjectWithTag ("Canvas");
+		buildPanel = GameObject.FindGameObjectWithTag ("Build Panel");
+		introPanel = GameObject.FindGameObjectWithTag ("Intro Panel");
+		collectPanel = GameObject.FindGameObjectWithTag ("Collect Panel");
+		distributePanel = GameObject.FindGameObjectWithTag ("Distribute Panel");
+
+
+		//canvas.gameObject.SetActive (false);
+		buildPanel.gameObject.SetActive (false);
+		introPanel.gameObject.SetActive (false);
+		collectPanel.gameObject.SetActive (false);
+		distributePanel.gameObject.SetActive (false);
+
+		currentState = GameStates.INTRO;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+		// TODO: Make it so random user input is ignored. They must follow the game sequence.
+		// Ex: While intro is going, the BUILD input should not function.
 		checkUserInput (Input.inputString);
 
 		switch (GetCurrentState()) {
+			case GameStates.INTRO:
+				Intro.InitiateIntroState ();
+				break;
+
 			case GameStates.CAMERA:
 				break;
 
 			case GameStates.BUILD:
+				Build.InitiateBuildState ();
 				break;
 
 			case GameStates.COLLECT:
@@ -68,6 +88,16 @@ public class GameManager : MonoBehaviour {
 
 	public GameStates GetCurrentState() {
 		return currentState;
+	}
+
+	public void resetState() {
+		//canvas.gameObject.SetActive (false);
+		buildPanel.gameObject.SetActive (false);
+		introPanel.gameObject.SetActive (false);
+		collectPanel.gameObject.SetActive (false);
+		distributePanel.gameObject.SetActive (false);
+
+		currentState = GameStates.CAMERA;
 	}
 
 	void checkUserInput(string input) {
@@ -99,7 +129,7 @@ public class GameManager : MonoBehaviour {
 				break;
 		default:
 			if (Input.GetKeyDown(KeyCode.Escape)) {
-				currentState = GameStates.CAMERA;
+				resetState ();
 			}
 			break;
 		}

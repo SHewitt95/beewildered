@@ -25,7 +25,7 @@ public class CameraMove : MonoBehaviour {
 		switch (GameManager.instance.GetCurrentState()) {
 			case GameManager.GameStates.CAMERA:
 				MoveContinuous();
-				TurnCamera ();
+				//TurnCamera ();
 				break;
 			default:
 				break;

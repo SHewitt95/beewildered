@@ -1,10 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js">
     <Files>
-      <File FileName="Assets\GameManager.cs" Line="51" Column="20" />
-      <File FileName="Assets\CameraMove.cs" Line="28" Column="5" />
+      <File FileName="Assets\GameManager.cs" Line="30" Column="55" />
+      <File FileName="Assets\CameraMove.cs" Line="28" Column="7" />
       <File FileName="Assets\Controller.cs" Line="13" Column="4" />
+      <File FileName="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.js" Line="3" Column="27" />
+      <File FileName="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js" Line="136" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

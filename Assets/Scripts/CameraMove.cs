@@ -36,6 +36,7 @@ public class CameraMove : MonoBehaviour {
 				moveWithObject();
 				break;
 			default:
+				moveWithObject();
 				break;
 		}
 

@@ -20,34 +20,7 @@ public class Move : MonoBehaviour {
 			
 	}
 
-	public static void startJourney() {
-		/*
-		goals = Collect.collectGoals ();
-		agent = 
-			GameObject.FindGameObjectWithTag("Swarm").GetComponent<NavMeshAgent> ();
 
-		agent.speed = 14;
-		i = 0;
-		agent.destination = goals [i].position;
-
-		while (i < goals.Length - 1) {
-
-			float dist = Vector3.Distance (agent.transform.position, goals[i].position);
-			Transform currentTarget = goals [i];
-
-			if (dist < 3) {
-
-				if (i < goals.Length - 1) {
-					i++;
-					agent.destination = goals [i].position;
-				} 
-
-			}
-
-		}
-		*/
-			
-	}
 
 	void Update() {
 
@@ -79,6 +52,8 @@ public class Move : MonoBehaviour {
 						agent.destination = goals [i].position;
 					} else {
 						Collect.goalsGotten = false;
+						Collect.goals = new Transform[3];
+						start = true;
 					}
 
 					/*else {

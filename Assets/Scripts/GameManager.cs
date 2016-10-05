@@ -12,16 +12,16 @@ public class GameManager : MonoBehaviour {
 	public static GameObject collectPanel;
 	public static GameObject distributePanel;
 	public static GameObject neutralPanel;
-	public Reticle reticle;
 
-	public enum GameStates {CAMERA, BUILD, COLLECT, DISTRIBUTE, DEFEND, INTRO};
+	public enum GameStates {CAMERA, BUILD, COLLECT, DISTRIBUTE, SHOP, INTRO};
 
 	public bool hiveSpawned = false;
 
-	public static int[] grid = new int[64];
+	public static int[] grid;
 	/*
 	 * 0 = Empty grid position.
 	 * 1 = Tree
+	 * 2 = Flower
 	 * */
 
 
@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		//grid = new int[64];
+
 		//canvas = GameObject.FindGameObjectWithTag ("Canvas");
 		buildPanel = GameObject.FindGameObjectWithTag ("Build Panel");
 		introPanel = GameObject.FindGameObjectWithTag ("Intro Panel");
@@ -85,7 +87,7 @@ public class GameManager : MonoBehaviour {
 
 			case GameStates.BUILD:
 				GameManager.neutralPanel.gameObject.SetActive (false);
-				Build.InitiateBuildState ();
+				//Build.InitiateBuildState ();
 				break;
 
 			case GameStates.COLLECT:
@@ -97,7 +99,7 @@ public class GameManager : MonoBehaviour {
 				GameManager.neutralPanel.gameObject.SetActive (false);
 				break;
 
-			case GameStates.DEFEND:
+			case GameStates.SHOP:
 				GameManager.neutralPanel.gameObject.SetActive (false);
 				break;
 
@@ -108,6 +110,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void initGrid() {
+		grid = new int[225]; //15 rows * 15 columns = 225 total tiles.
+
 		for (int i = 0; i < grid.Length; i++) {
 			grid [i] = 0;
 		}
@@ -150,10 +154,10 @@ public class GameManager : MonoBehaviour {
 			currentState = GameStates.DISTRIBUTE;
 				break;
 			case "m":
-			currentState = GameStates.DEFEND;
+			currentState = GameStates.SHOP;
 				break;
 			case "M":
-			currentState = GameStates.DEFEND;
+			currentState = GameStates.SHOP;
 				break;
 		default:
 			if (Input.GetKeyDown(KeyCode.Escape)) {

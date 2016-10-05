@@ -30,14 +30,16 @@ public class Collect : MonoBehaviour {
 
 			Debug.Log ("Collect!");
 
-			if (Input.GetKeyDown(KeyCode.Return)) {
+			if (Input.GetKeyDown(KeyCode.Return) &&
+				GameManager.grid[SnapMovement.staticCurrentPos] == 2) {
 				//Transform temp = player.transform;
 
 				GameObject hi = (GameObject) Instantiate(empty, player.transform.position, player.transform.rotation);
-
+		
 				goals [spotsSelected] = hi.transform;
 				print ("Coordinates: X-" + hi.transform.position.x + " Z-" + hi.transform.position.z);
 				//printGoals ();
+				//Destroy(hi);
 
 				spotsSelected++;
 			}
@@ -46,6 +48,7 @@ public class Collect : MonoBehaviour {
 				print ("Got goals!");
 				goalsGotten = true;
 				printGoals ();
+				spotsSelected = 0;
 			}
 
 		}

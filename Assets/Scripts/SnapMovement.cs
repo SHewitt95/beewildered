@@ -12,6 +12,8 @@ public class SnapMovement : MonoBehaviour {
 	private static int currentY;					// Current y position
 	public int currentPos;
 
+	public static int staticCurrentPos;
+
 	public float leftBound;
 	public float rightBound;
 	public float topBound;
@@ -23,7 +25,7 @@ public class SnapMovement : MonoBehaviour {
 		pos = transform.position;
 		bottomBound = 0;
 		leftBound = bottomBound + 3;
-		topBound = 225;
+		topBound = 210;
 		rightBound = topBound + 3;
 
 	}
@@ -73,14 +75,14 @@ public class SnapMovement : MonoBehaviour {
 		if(Input.GetKey(KeyCode.A) && transform.position == pos) {        // Left
 			if (pos.x > leftBound) {
 				pos += Vector3.left * 15;
-				currentPos -= 8;
+				currentPos -= 15;
 			}
 
 		}
 		if(Input.GetKey(KeyCode.D) && transform.position == pos) {        // Right
 			if (pos.x != rightBound) {
 				pos += Vector3.right * 15;
-				currentPos += 8;
+				currentPos += 15;
 			}
 				
 		}
@@ -100,6 +102,7 @@ public class SnapMovement : MonoBehaviour {
 		}
 
 		transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
+		staticCurrentPos = currentPos;
 		//Debug.Log (currentPos);
 
 	}

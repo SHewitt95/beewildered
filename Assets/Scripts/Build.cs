@@ -25,6 +25,7 @@ public class Build : MonoBehaviour {
 
 				Instantiate (flower1, player.transform.position, player.transform.rotation);
 				GameManager.grid [SnapMovement.staticCurrentPos] = 2;
+				Bank.subtractNectar (10);
 			}
 
 		}

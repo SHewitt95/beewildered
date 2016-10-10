@@ -54,6 +54,8 @@ public class Move : MonoBehaviour {
 						Collect.goalsGotten = false;
 						Collect.goals = new Transform[3];
 						start = true;
+						//agent.destination = GameObject.FindGameObjectWithTag ("Hive").transform.position;
+						Destroy (this.gameObject);
 					}
 
 					/*else {

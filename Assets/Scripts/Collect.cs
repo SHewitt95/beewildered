@@ -6,6 +6,8 @@ public class Collect : MonoBehaviour {
 	public static Transform[] goals;
 	int spotsSelected;
 	GameObject player;
+	public GameObject hive;
+	public GameObject swarm;
 
 	public GameObject empty;
 
@@ -45,6 +47,7 @@ public class Collect : MonoBehaviour {
 			}
 
 			if (spotsSelected == goals.Length) {
+				Instantiate (swarm, hive.transform.position, hive.transform.rotation);
 				print ("Got goals!");
 				goalsGotten = true;
 				printGoals ();

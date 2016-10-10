@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour {
 	public static GameObject distributePanel;
 	public static GameObject neutralPanel;
 
+	int frames;
+	int rate;
+	int minute;
+
 	public enum GameStates {CAMERA, BUILD, COLLECT, DISTRIBUTE, SHOP, INTRO};
 
 	public bool hiveSpawned = false;
@@ -67,6 +71,10 @@ public class GameManager : MonoBehaviour {
 		neutralPanel.gameObject.SetActive (false);
 
 		currentState = GameStates.CAMERA;
+
+		frames = 1;
+		rate = 10;
+		minute = 60;
 	}
 	
 	// Update is called once per frame
@@ -87,7 +95,7 @@ public class GameManager : MonoBehaviour {
 
 			case GameStates.BUILD:
 				GameManager.neutralPanel.gameObject.SetActive (false);
-				//Build.InitiateBuildState ();
+				Build.InitiateBuildState ();
 				break;
 
 			case GameStates.COLLECT:
@@ -106,6 +114,12 @@ public class GameManager : MonoBehaviour {
 			default:
 				break;
 		}
+
+		if ((frames % (minute*rate)) == 0) {
+			//Bank.addPollen (1);
+		}
+
+		frames++;
 
 	}
 
@@ -132,7 +146,7 @@ public class GameManager : MonoBehaviour {
 		currentState = GameStates.CAMERA;
 	}
 
-	void checkUserInput(string input) {
+	public void checkUserInput(string input) {
 		//Debug.Log (input);
 		switch(input) {
 			case "b":

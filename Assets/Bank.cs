@@ -6,18 +6,22 @@ public class Bank : MonoBehaviour {
 
 	public static int pollen;
 	public static int nectar;
+	public static int honey;
 
 	public Text pollenText;
 	public Text nectarText;
+	public Text honeyText;
 
 	// Use this for initialization
 	void Start () {
 
-		pollen = 100;
-		nectar = 75;
+		pollen = 0;
+		nectar = 50;
+		honey = 0;
 
 		pollenText.text = "Pollen: ";
 		nectarText.text = "Nectar: ";
+		honeyText.text = "Honey: ";
 			
 	}
 	
@@ -26,6 +30,7 @@ public class Bank : MonoBehaviour {
 
 		pollenText.text = "Pollen: " + pollen;
 		nectarText.text = "Nectar: " + nectar;
+		honeyText.text = "Honey: " + honey;
 	
 	}
 

@@ -3,7 +3,16 @@ using System.Collections;
 
 public class Build : MonoBehaviour {
 
-	public GameObject flower1;
+	//Flowers
+	public GameObject dandelion;
+
+	//Trees
+	public GameObject appleTree;
+
+	//Bushes
+	public GameObject blueberries;
+
+
 	GameObject player;
 
 	// Use this for initialization
@@ -23,9 +32,9 @@ public class Build : MonoBehaviour {
 			if (Input.GetKeyDown(KeyCode.Return) &&
 				GameManager.grid[SnapMovement.staticCurrentPos] == 0) {
 
-				Instantiate (flower1, player.transform.position, player.transform.rotation);
+				Instantiate (dandelion, player.transform.position, player.transform.rotation);
 				GameManager.grid [SnapMovement.staticCurrentPos] = 2;
-				Bank.subtractNectar (10);
+				//Bank.subtractNectar (10);
 			}
 
 		}

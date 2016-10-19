@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{90DE9136-9D9D-FFD8-9621-43ACF7CEF9E5}") = "BeeWildered", "Assembly-CSharp.csproj", "{7D9A4849-5B14-5CED-E952-A20EF68A6D50}"
 EndProject
-Project("{90DE9136-9D9D-FFD8-9621-43ACF7CEF9E5}") = "BeeWildered", "Assembly-CSharp-Editor.csproj", "{63071924-6D4A-1EEA-BEBA-892BB51C968B}"
-EndProject
 Project("{90DE9136-9D9D-FFD8-9621-43ACF7CEF9E5}") = "BeeWildered", "Assembly-UnityScript.unityproj", "{30EAB32E-692E-4D1D-DCC9-F3904A2BB0EC}"
 EndProject
 Global
@@ -17,10 +15,6 @@ Global
 		{7D9A4849-5B14-5CED-E952-A20EF68A6D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D9A4849-5B14-5CED-E952-A20EF68A6D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D9A4849-5B14-5CED-E952-A20EF68A6D50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{63071924-6D4A-1EEA-BEBA-892BB51C968B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63071924-6D4A-1EEA-BEBA-892BB51C968B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63071924-6D4A-1EEA-BEBA-892BB51C968B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63071924-6D4A-1EEA-BEBA-892BB51C968B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30EAB32E-692E-4D1D-DCC9-F3904A2BB0EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30EAB32E-692E-4D1D-DCC9-F3904A2BB0EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30EAB32E-692E-4D1D-DCC9-F3904A2BB0EC}.Release|Any CPU.ActiveCfg = Release|Any CPU

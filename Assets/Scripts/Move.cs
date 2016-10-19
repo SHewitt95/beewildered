@@ -8,14 +8,21 @@ public class Move : MonoBehaviour {
 	int i;
 	bool start;
 
+	GameObject hive;
+
 
 	Transform[] goals;
 
 	void Start () {
 
-		//goals = Collect.collectGoals ();
-		//goals = new Transform[3];
-		start = true;
+		hive = GameObject.FindGameObjectWithTag ("Hive");
+
+		agent = GetComponent<NavMeshAgent> ();
+
+		agent.speed = 10;
+		i = 0;
+		goals = Collect.goals;
+		agent.destination = goals [i].position;
 
 			
 	}
@@ -24,59 +31,45 @@ public class Move : MonoBehaviour {
 
 	void Update() {
 
-		if (GameManager.instance.GetCurrentState() == GameManager.GameStates.COLLECT &&
-			Collect.goalsGotten) {
 
-			if (start) {
+		float dist = Vector3.Distance (transform.position, goals[i].position);
+		//Transform currentTarget = goals [i];
 
-				agent = GetComponent<NavMeshAgent> ();
-				//GameObject.FindGameObjectWithTag("Swarm").GetComponent<NavMeshAgent> ();
+		if (dist < 3) {
 
-				agent.speed = 14;
-				i = 0;
-				goals = Collect.goals;
+			if (i < goals.Length - 1) {
+				
+				i++;
 				agent.destination = goals [i].position;
-				print ("(Start) Going to X-" + goals[i].position.x + " Z-" + goals[i].position.z);
-				print ("(Next step) Going to X-" + goals[i+1].position.x + " Z-" + goals[i+1].position.z);
-				start = false;
 
 			} else {
-
-				float dist = Vector3.Distance (transform.position, goals[i].position);
-				//Transform currentTarget = goals [i];
-
-				if (dist < 3) {
-
-					if (i < goals.Length - 1) {
-						i++;
-						agent.destination = goals [i].position;
-					} else {
-						Collect.goalsGotten = false;
-						Collect.goals = new Transform[3];
-						start = true;
-						//agent.destination = GameObject.FindGameObjectWithTag ("Hive").transform.position;
-						Destroy (this.gameObject);
-					}
-
-					/*else {
-				print ("Reset i");
-				i = 0;
-				agent.destination = goals [i].position;
-			}*/
-
-				}
+				Collect.goalsGotten = false;
+				Collect.goals = new Transform[3];
+				agent.destination = hive.transform.position;
 
 			}
 
-
-
-
-
 		}
+
+		if (Vector3.Distance(agent.transform.position, hive.transform.position) < 3 &&
+			Collect.goalsGotten == false) {
+
+			Bank.addNectar (sumArrayValues(Collect.patchValues));
+
+			Destroy (this.gameObject);
 		
-
-
+		}
 			
+	}
+
+	int sumArrayValues(int[] array) {
+		int sum = 0;
+
+		for (int i = 0; i < array.Length; i++) {
+			sum += array [i];
+		}
+
+		return sum;
 	}
 
 	bool checkIfSameCoords(Transform a, Transform b) {

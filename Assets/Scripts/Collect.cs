@@ -3,11 +3,20 @@ using System.Collections;
 
 public class Collect : MonoBehaviour {
 
-	public static Transform[] goals;
+	public static int[] patchValues;
 	int spotsSelected;
 	GameObject player;
 	public GameObject hive;
+
 	public GameObject swarm;
+	public GameObject swarm2;
+	public GameObject swarm3;
+	public GameObject swarm4;
+
+	public static Transform[] goals;
+	public static Transform[] goals2;
+	public static Transform[] goals3;
+	public static Transform[] goals4;
 
 	public GameObject empty;
 
@@ -17,6 +26,7 @@ public class Collect : MonoBehaviour {
 	void Start () {
 
 		goals = new Transform[3];
+		patchValues = new int[3];
 		spotsSelected = 0;
 		goalsGotten = false;
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -36,22 +46,23 @@ public class Collect : MonoBehaviour {
 				GameManager.grid[SnapMovement.staticCurrentPos] == 2) {
 				//Transform temp = player.transform;
 
-				GameObject hi = (GameObject) Instantiate(empty, player.transform.position, player.transform.rotation);
+				patchValues[spotsSelected] = GameManager.gridValues[SnapMovement.staticCurrentPos];
+
+				GameObject temp = (GameObject) Instantiate(empty, player.transform.position, player.transform.rotation);
 		
-				goals [spotsSelected] = hi.transform;
-				print ("Coordinates: X-" + hi.transform.position.x + " Z-" + hi.transform.position.z);
-				//printGoals ();
-				//Destroy(hi);
+				goals [spotsSelected] = temp.transform;
 
 				spotsSelected++;
 			}
 
 			if (spotsSelected == goals.Length) {
 				Instantiate (swarm, hive.transform.position, hive.transform.rotation);
-				print ("Got goals!");
+				//print ("Got goals!");
 				goalsGotten = true;
-				printGoals ();
+				//printGoals ();
 				spotsSelected = 0;
+				GameManager.instance.resetState ();
+				//printGridValues ();
 			}
 
 		}
@@ -94,6 +105,14 @@ public class Collect : MonoBehaviour {
 
 	public static Transform[] returnGoals() {
 		return goals;
+	}
+
+	void printGridValues() {
+		for (int i = 0; i < GameManager.gridValues.Length; i++) {
+
+			print ("Index " + i + ": " + GameManager.gridValues[i]);
+
+		}
 	}
 
 

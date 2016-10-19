@@ -12,21 +12,28 @@ public class GameManager : MonoBehaviour {
 	public static GameObject collectPanel;
 	public static GameObject distributePanel;
 	public static GameObject neutralPanel;
+	public static GameObject hivePanel;
+
 
 	int frames;
 	int rate;
 	int minute;
 
-	public enum GameStates {CAMERA, BUILD, COLLECT, DISTRIBUTE, SHOP, INTRO};
+	public enum GameStates {CAMERA, BUILD, COLLECT, DISTRIBUTE, HIVE, INTRO};
 
 	public bool hiveSpawned = false;
 
-	public static int[] grid;
+	// Keeps track of what type of object exists in each grid position.
 	/*
 	 * 0 = Empty grid position.
 	 * 1 = Tree
 	 * 2 = Flower
 	 * */
+	public static int[] grid;
+
+	// Keeps track of the value associated with each grid position.
+	public static int[] gridValues;
+
 
 
 	//Awake is always called before any Start functions
@@ -61,6 +68,7 @@ public class GameManager : MonoBehaviour {
 		collectPanel = GameObject.FindGameObjectWithTag ("Collect Panel");
 		distributePanel = GameObject.FindGameObjectWithTag ("Distribute Panel");
 		neutralPanel = GameObject.FindGameObjectWithTag ("Neutral Panel");
+		hivePanel = GameObject.FindGameObjectWithTag ("Hive Panel");
 
 
 		//canvas.gameObject.SetActive (false);
@@ -69,12 +77,10 @@ public class GameManager : MonoBehaviour {
 		collectPanel.gameObject.SetActive (false);
 		distributePanel.gameObject.SetActive (false);
 		neutralPanel.gameObject.SetActive (false);
+		hivePanel.gameObject.SetActive (false);
 
-		currentState = GameStates.CAMERA;
+		currentState = GameStates.INTRO;
 
-		frames = 1;
-		rate = 10;
-		minute = 60;
 	}
 	
 	// Update is called once per frame
@@ -87,7 +93,7 @@ public class GameManager : MonoBehaviour {
 		switch (GetCurrentState()) {
 			case GameStates.INTRO:
 				GameManager.neutralPanel.gameObject.SetActive (false);
-				Intro.InitiateIntroState ();
+				//Intro.InitiateIntroState ();
 				break;
 
 			case GameStates.CAMERA:
@@ -107,27 +113,25 @@ public class GameManager : MonoBehaviour {
 				GameManager.neutralPanel.gameObject.SetActive (false);
 				break;
 
-			case GameStates.SHOP:
+			case GameStates.HIVE:
 				GameManager.neutralPanel.gameObject.SetActive (false);
+				Hive.InitiateHiveState ();
 				break;
 
 			default:
 				break;
 		}
 
-		if ((frames % (minute*rate)) == 0) {
-			//Bank.addPollen (1);
-		}
-
-		frames++;
 
 	}
 
 	void initGrid() {
 		grid = new int[225]; //15 rows * 15 columns = 225 total tiles.
+		gridValues = new int[225]; //15 rows * 15 columns = 225 total tiles.
 
 		for (int i = 0; i < grid.Length; i++) {
 			grid [i] = 0;
+			gridValues [i] = 0;
 		}
 	}
 
@@ -142,6 +146,7 @@ public class GameManager : MonoBehaviour {
 		collectPanel.gameObject.SetActive (false);
 		distributePanel.gameObject.SetActive (false);
 		neutralPanel.gameObject.SetActive (false);
+		hivePanel.gameObject.SetActive (false);
 
 		currentState = GameStates.CAMERA;
 	}
@@ -168,11 +173,14 @@ public class GameManager : MonoBehaviour {
 			currentState = GameStates.DISTRIBUTE;
 				break;
 			case "m":
-			currentState = GameStates.SHOP;
+			currentState = GameStates.HIVE;
 				break;
 			case "M":
-			currentState = GameStates.SHOP;
+			currentState = GameStates.HIVE;
 				break;
+			case "x":
+			currentState = GameStates.CAMERA;
+			break;
 		default:
 			if (Input.GetKeyDown(KeyCode.Escape)) {
 				resetState ();

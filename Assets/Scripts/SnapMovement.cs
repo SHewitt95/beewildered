@@ -33,17 +33,11 @@ public class SnapMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		/*
-		if (((Mathf.Round(Camera.main.gameObject.transform.position.x) % 15) == 0)
-			&& ((Mathf.Round(Camera.main.gameObject.transform.position.z) % 15) == 0)) {
 
-			gameObject.transform.position = new Vector3 (Mathf.Round(Camera.main.gameObject.transform.position.x), 
-				3.0f, 
-				Mathf.Round(Camera.main.gameObject.transform.position.z) + 25);
-			
+		if (GameManager.instance.GetCurrentState() != GameManager.GameStates.INTRO) {
+			MoveDiscrete ();
 		}
-		*/
-		MoveDiscrete ();
+
 	
 	}
 		

@@ -35,6 +35,12 @@ public class CameraMove : MonoBehaviour {
 				showNeutralControls();
 				moveWithObject();
 				break;
+
+		case GameManager.GameStates.INTRO:
+			//showNeutralControls();
+			//moveWithObject();
+			break;
+
 			default:
 				moveWithObject();
 				break;

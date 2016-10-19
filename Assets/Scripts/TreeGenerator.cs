@@ -56,7 +56,7 @@ public class TreeGenerator : MonoBehaviour {
 
 
 
-			printGrid ();
+			//printGrid ();
 		}
 
 		frame++;

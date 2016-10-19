@@ -36,10 +36,10 @@ public class Intro : MonoBehaviour {
 			*/
 
 			if (currentFrame % 3 == 0) {
-				incrementText ();
+				//incrementText ();
 			}
 
-			currentFrame++;
+			//currentFrame++;
 
 		}
 	

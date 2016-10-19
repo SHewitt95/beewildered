@@ -33,7 +33,13 @@ public class Build : MonoBehaviour {
 				GameManager.grid[SnapMovement.staticCurrentPos] == 0) {
 
 				Instantiate (dandelion, player.transform.position, player.transform.rotation);
+				// Dandelion value
+				GameManager.gridValues [SnapMovement.staticCurrentPos] = Dandelion.getNectarValue();
 				GameManager.grid [SnapMovement.staticCurrentPos] = 2;
+
+
+
+				GameManager.instance.resetState ();
 				//Bank.subtractNectar (10);
 			}
 
@@ -43,7 +49,7 @@ public class Build : MonoBehaviour {
 
 	public static void InitiateBuildState() {
 		Debug.Log ("Build!");
-		GameManager.buildPanel.gameObject.SetActive (true);
+		//GameManager.buildPanel.gameObject.SetActive (true);
 		//GameManager.canvas.
 	}
 }

@@ -9,14 +9,14 @@ public class Collect : MonoBehaviour {
 	public GameObject hive;
 
 	public GameObject swarm;
-	public GameObject swarm2;
+	/*public GameObject swarm2;
 	public GameObject swarm3;
-	public GameObject swarm4;
+	public GameObject swarm4;*/
 
 	public static Transform[] goals;
-	public static Transform[] goals2;
+	/*public static Transform[] goals2;
 	public static Transform[] goals3;
-	public static Transform[] goals4;
+	public static Transform[] goals4;*/
 
 	public GameObject empty;
 
@@ -56,7 +56,7 @@ public class Collect : MonoBehaviour {
 			}
 
 			if (spotsSelected == goals.Length) {
-				Instantiate (swarm, hive.transform.position, hive.transform.rotation);
+				GameObject newSwarm = (GameObject) Instantiate (swarm, hive.transform.position, hive.transform.rotation);
 				//print ("Got goals!");
 				goalsGotten = true;
 				//printGoals ();
@@ -104,7 +104,14 @@ public class Collect : MonoBehaviour {
 	}
 
 	public static Transform[] returnGoals() {
-		return goals;
+
+		Transform[] myGoals = new Transform[3];
+
+		System.Array.Copy(goals, myGoals, 3);
+
+		goals = new Transform[3];
+
+		return myGoals;
 	}
 
 	void printGridValues() {

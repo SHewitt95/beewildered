@@ -32,12 +32,12 @@ public class Build : MonoBehaviour {
 			if (Input.GetKeyDown(KeyCode.Return) &&
 				GameManager.grid[SnapMovement.staticCurrentPos] == 0) {
 
-				Instantiate (dandelion, player.transform.position, player.transform.rotation);
+				Vector3 pos = new Vector3 (player.transform.position.x, 0, player.transform.position.z);
+
+				Instantiate (dandelion, pos, player.transform.rotation);
 				// Dandelion value
 				GameManager.gridValues [SnapMovement.staticCurrentPos] = Dandelion.getNectarValue();
 				GameManager.grid [SnapMovement.staticCurrentPos] = 2;
-
-
 
 				GameManager.instance.resetState ();
 				//Bank.subtractNectar (10);

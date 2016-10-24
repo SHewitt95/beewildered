@@ -6,7 +6,7 @@ public class Move : MonoBehaviour {
 	
 	NavMeshAgent agent;
 	int i;
-	bool start;
+	bool active;
 
 	GameObject hive;
 
@@ -21,8 +21,10 @@ public class Move : MonoBehaviour {
 
 		agent.speed = 10;
 		i = 0;
-		goals = Collect.goals;
+		goals = Collect.returnGoals();
 		agent.destination = goals [i].position;
+
+		active = true;
 
 			
 	}
@@ -55,6 +57,7 @@ public class Move : MonoBehaviour {
 			Collect.goalsGotten == false) {
 
 			Bank.addNectar (sumArrayValues(Collect.patchValues));
+			active = false;
 
 			Destroy (this.gameObject);
 		

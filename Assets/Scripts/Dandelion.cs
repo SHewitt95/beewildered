@@ -12,7 +12,7 @@ public class Dandelion : MonoBehaviour {
 	int minute;
 	int rate;
 
-	public GameObject player;
+	public static GameObject player;
 
 	// Use this for initialization
 	void Start () {

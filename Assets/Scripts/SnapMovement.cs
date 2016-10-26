@@ -4,7 +4,7 @@ using System.Collections;
 public class SnapMovement : MonoBehaviour {
 
 	int tilePosition;
-	float speed = 60.0f;
+	float speed = 80.0f;
 
 	Vector3 pos;                                // For movement
 
@@ -25,7 +25,7 @@ public class SnapMovement : MonoBehaviour {
 		pos = transform.position;
 		bottomBound = 0;
 		leftBound = bottomBound + 3;
-		topBound = 210;
+		topBound = 285;
 		rightBound = topBound + 3;
 
 	}
@@ -41,20 +41,6 @@ public class SnapMovement : MonoBehaviour {
 	
 	}
 		
-
-	void moveX() {
-
-		Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-		//transform.position += move * speed * Time.deltaTime;
-
-	}
-
-	void moveZ() {
-
-		Vector3 move = new Vector3(0, 0, Input.GetAxis("Vertical"));
-		//transform.position += move * speed * Time.deltaTime;
-
-	}
 
 	void MoveDiscrete() {
 

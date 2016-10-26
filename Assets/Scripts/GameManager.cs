@@ -126,8 +126,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void initGrid() {
-		grid = new int[225]; //15 rows * 15 columns = 225 total tiles.
-		gridValues = new int[225]; //15 rows * 15 columns = 225 total tiles.
+		grid = new int[400]; //20 rows * 20 columns = 400 total tiles.
+		gridValues = new int[400]; //20 rows * 20 columns = 400 total tiles.
 
 		for (int i = 0; i < grid.Length; i++) {
 			grid [i] = 0;

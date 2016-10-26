@@ -31,7 +31,7 @@ public class TreeGenerator : MonoBehaviour {
 			int xPos = 0;
 			int yPos = 0;
 			int zPos = 0;
-			int max = 15;
+			int max = 20;
 
 
 			int gridPos = 0;
@@ -42,13 +42,37 @@ public class TreeGenerator : MonoBehaviour {
 
 				for (column = 0; column < max; column++) { // Make columns
 
-					if (Random.value < 0.35) {
+					if (Random.value < 0.4) {
 						//print (gridPos);
 						/*if (gridPos >= GameManager.grid.Length) {
 							break;
 						}*/
-						GameObject newTree = (GameObject) Instantiate(tree, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
+
+						float myValue = Random.value;
+						//GameObject newObj = (GameObject) Instantiate(tree, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
+
+
+						if (myValue <= 0.15) {
+							GameObject newObj = (GameObject) Instantiate(pinetree, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
+							newObj.transform.localScale = new Vector3 (Random.Range(80,120), Random.Range(80,120), Random.Range(80,120));
+						} else if (myValue > 0.15 && myValue <= 0.4) {
+							GameObject newObj = (GameObject) Instantiate(gentree1, new Vector3(xPos + 5, yPos + 5, zPos + 5), Quaternion.identity);
+							newObj.transform.localScale = new Vector3 (Random.Range(80,120), Random.Range(80,120), Random.Range(80,120));
+						} else if (myValue > 0.4 && myValue <= 0.6) {
+							GameObject newObj = (GameObject) Instantiate(gentree2, new Vector3(xPos + 5, yPos - 1, zPos + 5), Quaternion.identity);
+							newObj.transform.localScale = new Vector3 (Random.Range(80,120), Random.Range(80,120), Random.Range(80,120));
+						} else if (myValue > 0.6 && myValue <= 0.8) {
+							GameObject newObj = (GameObject) Instantiate(boulder1, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
+							newObj.transform.localScale = new Vector3 (Random.Range(50,100), Random.Range(50,100), Random.Range(50,100));
+						} else if (myValue > 0.8 && myValue <= 0.99) {
+							GameObject newObj = (GameObject) Instantiate(boulder2, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
+							newObj.transform.localScale = new Vector3 (Random.Range(50,100), Random.Range(50,100), Random.Range(50,100));
+						}
+
 						GameManager.grid [gridPos] = 1;
+
+
+
 					}
 
 

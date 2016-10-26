@@ -12,7 +12,6 @@ public class Build : MonoBehaviour {
 	//Bushes
 	public GameObject blueberries;
 
-
 	GameObject player;
 
 	// Use this for initialization

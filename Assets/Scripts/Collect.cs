@@ -56,7 +56,8 @@ public class Collect : MonoBehaviour {
 			}
 
 			if (spotsSelected == goals.Length) {
-				GameObject newSwarm = (GameObject) Instantiate (swarm, hive.transform.position, hive.transform.rotation);
+				GameObject newSwarm;
+				newSwarm = (GameObject) Instantiate (swarm, hive.transform.position, hive.transform.rotation);
 				//print ("Got goals!");
 				goalsGotten = true;
 				//printGoals ();

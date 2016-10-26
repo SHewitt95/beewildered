@@ -25,7 +25,7 @@ public class Dandelion : MonoBehaviour {
 
 		frames = 0;
 		minute = 60;
-		rate = 5;
+		rate = 10;
 	}
 
 	// Update is called once per frame

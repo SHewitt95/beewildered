@@ -26,7 +26,6 @@ public class Move : MonoBehaviour {
 
 		active = true;
 
-			
 	}
 
 

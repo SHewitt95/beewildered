@@ -4,6 +4,12 @@ using System.Collections;
 public class TreeGenerator : MonoBehaviour {
 
 	public GameObject tree;
+	public GameObject gentree1;
+	public GameObject gentree2;
+	public GameObject pinetree;
+	public GameObject boulder1;
+	public GameObject boulder2;
+
 	int frame;
 
 	//public int[] treePositions = new int[64];

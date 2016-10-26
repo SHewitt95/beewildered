@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class UIController : MonoBehaviour {
@@ -14,7 +15,7 @@ public class UIController : MonoBehaviour {
 		howToPlay.gameObject.SetActive(false);
 		collectPanel.gameObject.SetActive(false);
 
-	
+
 	}
 	
 	// Update is called once per frame
@@ -48,5 +49,7 @@ public class UIController : MonoBehaviour {
 	public void sendCollectInput() {
 		GameManager.instance.checkUserInput ("v");
 		collectPanel.gameObject.SetActive (false);
+
+		//print (Input.GetButtonDown("Swarm 1"));
 	}
 }

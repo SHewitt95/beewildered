@@ -42,22 +42,16 @@ public class TreeGenerator : MonoBehaviour {
 
 				for (column = 0; column < max; column++) { // Make columns
 
-					if (Random.value < 0.4) {
-						//print (gridPos);
-						/*if (gridPos >= GameManager.grid.Length) {
-							break;
-						}*/
+					if (Random.value < 0.35) {
 
 						float myValue = Random.value;
-						//GameObject newObj = (GameObject) Instantiate(tree, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
-
 
 						if (myValue <= 0.15) {
 							GameObject newObj = (GameObject) Instantiate(pinetree, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
 							float scaleValue = Random.Range (80, 120);
 							newObj.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
 						} else if (myValue > 0.15 && myValue <= 0.4) {
-							GameObject newObj = (GameObject) Instantiate(gentree1, new Vector3(xPos + 5, yPos + 5, zPos + 5), Quaternion.identity);
+							GameObject newObj = (GameObject) Instantiate(gentree1, new Vector3(xPos + 5, yPos + 4, zPos + 5), Quaternion.identity);
 							float scaleValue = Random.Range (80, 120);
 							newObj.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
 						} else if (myValue > 0.4 && myValue <= 0.6) {
@@ -75,8 +69,6 @@ public class TreeGenerator : MonoBehaviour {
 						}
 
 						GameManager.grid [gridPos] = 1;
-
-
 
 					}
 

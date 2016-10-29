@@ -3,10 +3,13 @@ using System.Collections;
 
 public class Intro : MonoBehaviour {
 
-	bool introHivePlaced = false;
+	public static bool introHivePlaced = false;
 	GUIText[] introtext;
 	int text = 0;
 	int currentFrame = 0;
+
+	public GameObject hive;
+	public GameObject player;
 
 	// Use this for initialization
 	void Start () {
@@ -21,28 +24,31 @@ public class Intro : MonoBehaviour {
 
 		if (GameManager.instance.GetCurrentState() == GameManager.GameStates.INTRO) {
 
-			/*
-			if (!introHivePlaced && Input.GetMouseButtonDown(0)) {
-				
-				GameObject hive = GameObject.FindGameObjectWithTag ("Player");
+			//GameManager.introPanel.SetActive (true);
 
-				Vector3 newPosition = new Vector3 (Camera.main.transform.position.x, 
-					Camera.main.transform.position.y, Camera.main.transform.position.z + 4.85f);
-				
-				hive.transform.position = newPosition;
-				Camera.main.transform.DetachChildren ();
+			// Spawn Hive
+			if (!introHivePlaced &&
+				Input.GetKeyDown(KeyCode.Return) &&
+				GameManager.grid[SnapMovement.staticCurrentPos] == 1) {
+
+				Vector3 pos = new Vector3(player.transform.position.x - 2, player.transform.position.y, player.transform.position.z + 2);
+
+				Instantiate (hive, pos, player.transform.rotation);
 				introHivePlaced = true;
-			}
-			*/
 
-			if (currentFrame % 3 == 0) {
-				//incrementText ();
-			}
+				GameManager.introPanel.transform.GetChild(text).gameObject.SetActive(false);
+				GameManager.introPanel.transform.GetChild(++text).gameObject.SetActive(true);
 
-			//currentFrame++;
+				GameManager.instance.checkUserInput ("x");
+				
+			}
 
 		}
 	
+	}
+
+	public static void HivePlaced () {
+		introHivePlaced = true;
 	}
 
 	void hideAllText() {

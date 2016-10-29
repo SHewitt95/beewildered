@@ -38,7 +38,7 @@ public class CameraMove : MonoBehaviour {
 
 		case GameManager.GameStates.INTRO:
 			//showNeutralControls();
-			//moveWithObject();
+			moveWithObject();
 			break;
 
 			default:
@@ -59,7 +59,7 @@ public class CameraMove : MonoBehaviour {
 	void moveWithObject() {
 		GameObject player = GameObject.FindGameObjectWithTag ("Player").gameObject;
 
-		transform.position = new Vector3 (player.transform.position.x - 3, 20, player.transform.position.z - 30);
+		transform.position = new Vector3 (player.transform.position.x - 3, 20, player.transform.position.z - 20);
 	}
 
 	void showNeutralControls() {

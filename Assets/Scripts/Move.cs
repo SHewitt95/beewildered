@@ -10,10 +10,18 @@ public class Move : MonoBehaviour {
 
 	GameObject hive;
 
-
 	Transform[] goals;
 
+	public Color c1 = Color.yellow;
+	int lineLength = 5;
+
 	void Start () {
+
+		LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer> ();
+		lineRenderer.material = new Material (Shader.Find("Particles/Additive"));
+		lineRenderer.SetColors (c1,c1);
+		lineRenderer.SetWidth (0.2f, 0.2f);
+		lineRenderer.SetVertexCount (lineLength);
 
 		hive = GameObject.FindGameObjectWithTag ("Hive");
 
@@ -23,8 +31,24 @@ public class Move : MonoBehaviour {
 		i = 0;
 		goals = Collect.returnGoals();
 		agent.destination = goals [i].position;
+		lineRenderer.SetPositions (getVector3s(goals));
 
 		active = true;
+
+	}
+
+	public Vector3[] getVector3s(Transform[] goals) {
+
+		Vector3[] points = new Vector3[5];
+
+		points [0] = hive.transform.position;
+		points [4] = hive.transform.position;
+
+		points[1] = goals[0].position;
+		points[2] = goals[1].position;
+		points[3] = goals[2].position;
+
+		return points;
 
 	}
 
@@ -35,6 +59,11 @@ public class Move : MonoBehaviour {
 
 		float dist = Vector3.Distance (transform.position, goals[i].position);
 		//Transform currentTarget = goals [i];
+
+		/*
+		LineRenderer lineRenderer = GetComponent<LineRenderer> ();
+		float t = Time.time;
+		int j = 0;*/
 
 		if (dist < 3) {
 

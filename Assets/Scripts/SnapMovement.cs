@@ -18,9 +18,15 @@ public class SnapMovement : MonoBehaviour {
 	public float rightBound;
 	public float topBound;
 	public float bottomBound;
+	public int tileSize;
 
 	// Use this for initialization
 	void Start () {
+
+		transform.position = new Vector3 (153, 3, 150);
+		currentPos = 210;
+
+		tileSize = 20;
 
 		pos = transform.position;
 		bottomBound = 0;
@@ -34,9 +40,9 @@ public class SnapMovement : MonoBehaviour {
 	void Update () {
 
 
-		if (GameManager.instance.GetCurrentState() != GameManager.GameStates.INTRO) {
+		//if (GameManager.instance.GetCurrentState() != GameManager.GameStates.INTRO) {
 			MoveDiscrete ();
-		}
+		//}
 
 	
 	}
@@ -55,14 +61,14 @@ public class SnapMovement : MonoBehaviour {
 		if(Input.GetKey(KeyCode.A) && transform.position == pos) {        // Left
 			if (pos.x > leftBound) {
 				pos += Vector3.left * 15;
-				currentPos -= 15;
+				currentPos -= tileSize;
 			}
 
 		}
 		if(Input.GetKey(KeyCode.D) && transform.position == pos) {        // Right
 			if (pos.x != rightBound) {
 				pos += Vector3.right * 15;
-				currentPos += 15;
+				currentPos += tileSize;
 			}
 				
 		}

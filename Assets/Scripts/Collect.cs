@@ -6,7 +6,7 @@ public class Collect : MonoBehaviour {
 	public static int[] patchValues;
 	int spotsSelected;
 	GameObject player;
-	public GameObject hive;
+	GameObject hive;
 
 	public GameObject swarm;
 	/*public GameObject swarm2;
@@ -30,6 +30,7 @@ public class Collect : MonoBehaviour {
 		spotsSelected = 0;
 		goalsGotten = false;
 		player = GameObject.FindGameObjectWithTag ("Player");
+
 		//collectGoals ();
 	
 	}
@@ -57,6 +58,7 @@ public class Collect : MonoBehaviour {
 
 			if (spotsSelected == goals.Length) {
 				GameObject newSwarm;
+				hive = GameObject.FindGameObjectWithTag ("Hive");
 				newSwarm = (GameObject) Instantiate (swarm, hive.transform.position, hive.transform.rotation);
 				//print ("Got goals!");
 				goalsGotten = true;

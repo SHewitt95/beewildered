@@ -16,7 +16,79 @@ public class TreeGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		frame = 0;
+		
+		int row;
+		int column;
+
+		int xPos = 0;
+		int yPos = 0;
+		int zPos = 0;
+		int max = 20;
+
+
+		int gridPos = 0;
+
+		int tileSize = 15;
+
+		for (row = 0; row < max; row++) { // Make rows
+
+			for (column = 0; column < max; column++) { // Make columns
+
+				// Randomly spawn a gameobject
+				if (Random.value < 0.35) {
+
+					float myValue = Random.value;
+
+					if (myValue <= 0.15) {
+						GameObject newObj = (GameObject) Instantiate(pinetree, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
+						//GameObject newObj = (GameObject) Instantiate(pinetree, new Vector3(xPos, yPos, zPos), Quaternion.identity);
+						float scaleValue = Random.Range (80, 120);
+						newObj.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
+						GameManager.grid [gridPos] = 1;
+
+					} else if (myValue > 0.15 && myValue <= 0.4) {
+						GameObject newObj = (GameObject) Instantiate(gentree1, new Vector3(xPos + 5, yPos + 4, zPos + 5), Quaternion.identity);
+						//GameObject newObj = (GameObject) Instantiate(gentree1, new Vector3(xPos, yPos + 4, zPos), Quaternion.identity);
+						float scaleValue = Random.Range (80, 120);
+						newObj.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
+						GameManager.grid [gridPos] = 1;
+
+					} else if (myValue > 0.4 && myValue <= 0.6) {
+						GameObject newObj = (GameObject) Instantiate(gentree2, new Vector3(xPos + 5, yPos - 1, zPos + 5), Quaternion.identity);
+						//GameObject newObj = (GameObject) Instantiate(gentree2, new Vector3(xPos, yPos - 1, zPos), Quaternion.identity);
+						float scaleValue = Random.Range (80, 120);
+						newObj.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
+						GameManager.grid [gridPos] = 1;
+
+					} else if (myValue > 0.6 && myValue <= 0.8) {
+						GameObject newObj = (GameObject) Instantiate(boulder1, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
+						//GameObject newObj = (GameObject) Instantiate(boulder1, new Vector3(xPos, yPos, zPos), Quaternion.identity);
+						float scaleValue = Random.Range (50, 100);
+						newObj.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
+						GameManager.grid [gridPos] = 3;
+
+					} else if (myValue > 0.8 && myValue <= 0.99) {
+						GameObject newObj = (GameObject) Instantiate(boulder2, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
+						//GameObject newObj = (GameObject) Instantiate(boulder2, new Vector3(xPos, yPos, zPos), Quaternion.identity);
+						float scaleValue = Random.Range (50, 100);
+						newObj.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
+						GameManager.grid [gridPos] = 3;
+					}
+						
+				}
+
+
+				zPos += tileSize;
+				gridPos++;
+			}
+
+			xPos += tileSize;
+			zPos = 0;
+		}
+
+
+
+		printGrid ();
 	}
 	
 	// Update is called once per frame
@@ -25,65 +97,7 @@ public class TreeGenerator : MonoBehaviour {
 
 
 		if (frame < 1) {
-			int row;
-			int column;
-
-			int xPos = 0;
-			int yPos = 0;
-			int zPos = 0;
-			int max = 20;
-
-
-			int gridPos = 0;
-
-			int tileSize = 15;
-
-			for (row = 0; row < max; row++) { // Make rows
-
-				for (column = 0; column < max; column++) { // Make columns
-
-					if (Random.value < 0.35) {
-
-						float myValue = Random.value;
-
-						if (myValue <= 0.15) {
-							GameObject newObj = (GameObject) Instantiate(pinetree, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
-							float scaleValue = Random.Range (80, 120);
-							newObj.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
-						} else if (myValue > 0.15 && myValue <= 0.4) {
-							GameObject newObj = (GameObject) Instantiate(gentree1, new Vector3(xPos + 5, yPos + 4, zPos + 5), Quaternion.identity);
-							float scaleValue = Random.Range (80, 120);
-							newObj.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
-						} else if (myValue > 0.4 && myValue <= 0.6) {
-							GameObject newObj = (GameObject) Instantiate(gentree2, new Vector3(xPos + 5, yPos - 1, zPos + 5), Quaternion.identity);
-							float scaleValue = Random.Range (80, 120);
-							newObj.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
-						} else if (myValue > 0.6 && myValue <= 0.8) {
-							GameObject newObj = (GameObject) Instantiate(boulder1, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
-							float scaleValue = Random.Range (50, 100);
-							newObj.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
-						} else if (myValue > 0.8 && myValue <= 0.99) {
-							GameObject newObj = (GameObject) Instantiate(boulder2, new Vector3(xPos + 5, yPos, zPos + 5), Quaternion.identity);
-							float scaleValue = Random.Range (50, 100);
-							newObj.transform.localScale = new Vector3 (scaleValue, scaleValue, scaleValue);
-						}
-
-						GameManager.grid [gridPos] = 1;
-
-					}
-
-
-					zPos += tileSize;
-					gridPos++;
-				}
-
-				xPos += tileSize;
-				zPos = 0;
-			}
-
-
-
-			//printGrid ();
+			
 		}
 
 		frame++;

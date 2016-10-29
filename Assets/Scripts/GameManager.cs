@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour {
 	 * 0 = Empty grid position.
 	 * 1 = Tree
 	 * 2 = Flower
+	 * 3 = Boulder
 	 * */
 	public static int[] grid;
 

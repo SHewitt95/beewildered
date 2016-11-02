@@ -11,16 +11,20 @@ public class UIController : MonoBehaviour {
 	public GameObject introPanel;
 	public GameObject seedsPanel;
 	public GameObject hivePanel;
+	public GameObject bankPanel;
+	public GameObject buildPanel;
+	public GameObject buildSwarmPanel;
 
-	int text;
 
 	// Use this for initialization
 	void Start () {
 
-		text = 1;
 		howToPlay.gameObject.SetActive(false);
 		collectPanel.gameObject.SetActive(false);
 		seedsPanel.gameObject.SetActive(false);
+		bankPanel.gameObject.SetActive(false);
+		buildPanel.gameObject.SetActive(false);
+		buildSwarmPanel.gameObject.SetActive (false);
 
 
 	}
@@ -28,6 +32,26 @@ public class UIController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//print(GameManager.instance.GetCurrentState());
+		if (GameManager.instance.GetCurrentState () == GameManager.GameStates.CAMERA) {
+			bankPanel.gameObject.SetActive(true);
+		}
+	}
+
+	public void openBuildSwarmPanel() {
+		buildSwarmPanel.gameObject.SetActive (true);
+	}
+
+	public void closeBuildSwarmPanel() {
+		buildSwarmPanel.gameObject.SetActive (false);
+	}
+
+	public void openBuildPanel() {
+		buildPanel.gameObject.SetActive(true);
+		neutralPanel.gameObject.SetActive (false);
+	}
+
+	public void closeBuildPanel() {
+		buildPanel.gameObject.SetActive(false);
 	}
 
 	public void openSeedsPanel () {
@@ -53,7 +77,7 @@ public class UIController : MonoBehaviour {
 	public void StartButton() {
 		openingMenu.gameObject.SetActive (false);
 		GameManager.introPanel.SetActive (true);
-		//GameManager.instance.checkUserInput ("x");
+		GameManager.instance.checkUserInput ("y");
 	}
 
 	public void howToPlayButton() {
@@ -73,12 +97,19 @@ public class UIController : MonoBehaviour {
 		//print (Input.GetButtonDown("Swarm 1"));
 	}
 
+	public void sendBuildInput() {
+		GameManager.instance.checkUserInput ("b");
+		//collectPanel.gameObject.SetActive (false);
+
+		//print (Input.GetButtonDown("Swarm 1"));
+	}
+
 	public void nextText() {
 
-		if (Intro.introHivePlaced) {
-			introPanel.transform.GetChild(text).gameObject.SetActive(false);
-			introPanel.transform.GetChild(++text).gameObject.SetActive(true);
-		}
+		//if (Intro.introHivePlaced) {
+			introPanel.transform.GetChild(Intro.text).gameObject.SetActive(false);
+			introPanel.transform.GetChild(++Intro.text).gameObject.SetActive(true);
+		//}
 
 
 	}

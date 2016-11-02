@@ -5,7 +5,7 @@ public class Intro : MonoBehaviour {
 
 	public static bool introHivePlaced = false;
 	GUIText[] introtext;
-	int text = 0;
+	public static int text = 0;
 	int currentFrame = 0;
 
 	public GameObject hive;
@@ -39,7 +39,7 @@ public class Intro : MonoBehaviour {
 				GameManager.introPanel.transform.GetChild(text).gameObject.SetActive(false);
 				GameManager.introPanel.transform.GetChild(++text).gameObject.SetActive(true);
 
-				GameManager.instance.checkUserInput ("x");
+				//GameManager.instance.checkUserInput ("x");
 				
 			}
 

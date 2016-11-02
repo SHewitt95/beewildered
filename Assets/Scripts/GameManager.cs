@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
 	int rate;
 	int minute;
 
-	public enum GameStates {CAMERA, BUILD, COLLECT, DISTRIBUTE, HIVE, INTRO};
+	public enum GameStates {CAMERA, BUILD, COLLECT, DISTRIBUTE, HIVE, INTRO, START};
 
 	public bool hiveSpawned = false;
 
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour {
 		neutralPanel.gameObject.SetActive (false);
 		hivePanel.gameObject.SetActive (false);
 
-		currentState = GameStates.INTRO;
+		currentState = GameStates.START;
 
 	}
 	
@@ -181,6 +181,9 @@ public class GameManager : MonoBehaviour {
 				break;
 			case "x":
 			currentState = GameStates.CAMERA;
+			break;
+		case "y":
+			currentState = GameStates.INTRO;
 			break;
 		default:
 			if (Input.GetKeyDown(KeyCode.Escape)) {

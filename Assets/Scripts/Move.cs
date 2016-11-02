@@ -17,11 +17,12 @@ public class Move : MonoBehaviour {
 
 	void Start () {
 
+		/*
 		LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer> ();
 		lineRenderer.material = new Material (Shader.Find("Particles/Additive"));
 		lineRenderer.SetColors (c1,c1);
 		lineRenderer.SetWidth (0.2f, 0.2f);
-		lineRenderer.SetVertexCount (lineLength);
+		lineRenderer.SetVertexCount (lineLength);*/
 
 		hive = GameObject.FindGameObjectWithTag ("Hive");
 
@@ -31,7 +32,7 @@ public class Move : MonoBehaviour {
 		i = 0;
 		goals = Collect.returnGoals();
 		agent.destination = goals [i].position;
-		lineRenderer.SetPositions (getVector3s(goals));
+		//lineRenderer.SetPositions (getVector3s(goals));
 
 		active = true;
 

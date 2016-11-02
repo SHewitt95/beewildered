@@ -40,9 +40,9 @@ public class SnapMovement : MonoBehaviour {
 	void Update () {
 
 
-		//if (GameManager.instance.GetCurrentState() != GameManager.GameStates.INTRO) {
+		if (GameManager.instance.GetCurrentState() != GameManager.GameStates.START) {
 			MoveDiscrete ();
-		//}
+		}
 
 	
 	}

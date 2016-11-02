@@ -59,7 +59,7 @@ public class CameraMove : MonoBehaviour {
 	void moveWithObject() {
 		GameObject player = GameObject.FindGameObjectWithTag ("Player").gameObject;
 
-		transform.position = new Vector3 (player.transform.position.x - 3, 20, player.transform.position.z - 20);
+		transform.position = new Vector3 (player.transform.position.x, 10, player.transform.position.z - 5);
 	}
 
 	void showNeutralControls() {

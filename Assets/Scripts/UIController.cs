@@ -15,9 +15,14 @@ public class UIController : MonoBehaviour {
 	public GameObject buildPanel;
 	public GameObject buildSwarmPanel;
 
+	void Awake () {
+		//neutralPanel = GameObject.FindGameObjectWithTag ("Neutral Panel");
+	}
 
 	// Use this for initialization
 	void Start () {
+
+		//neutralPanel = GameObject.FindGameObjectWithTag ("Neutral Panel");
 
 		howToPlay.gameObject.SetActive(false);
 		collectPanel.gameObject.SetActive(false);
@@ -36,7 +41,7 @@ public class UIController : MonoBehaviour {
 			bankPanel.gameObject.SetActive(true);
 		}
 	}
-
+		
 	public void openBuildSwarmPanel() {
 		buildSwarmPanel.gameObject.SetActive (true);
 	}
@@ -66,8 +71,25 @@ public class UIController : MonoBehaviour {
 		hivePanel.gameObject.SetActive(false);
 	}
 
+	public void openNeutralPanel() {
+		neutralPanel.gameObject.SetActive (true);
+		GameManager.instance.checkUserInput ("x");
+		//print ("Neutral ON!");
+	}
+
 	public void closeNeutral() {
 		neutralPanel.gameObject.SetActive (false);
+	}
+
+	void hideNeutralButtons() {
+		foreach (Transform child in GameManager.neutralPanel.transform) {
+			//print ("Foreach loop: " + child);
+			child.gameObject.SetActive (false);
+		}
+	}
+
+	public void closeIntroPanel() {
+		introPanel.gameObject.SetActive (false);
 	}
 
 	public void openCollectPanel() {
@@ -81,12 +103,12 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void howToPlayButton() {
-		openingMenu.gameObject.SetActive (false);
+		//openingMenu.gameObject.SetActive (false);
 		howToPlay.gameObject.SetActive(true);
 	}
 
 	public void backFromHowToPlay() {
-		openingMenu.gameObject.SetActive (true);
+		//openingMenu.gameObject.SetActive (true);
 		howToPlay.gameObject.SetActive(false);
 	}
 

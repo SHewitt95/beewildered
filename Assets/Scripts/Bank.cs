@@ -70,6 +70,21 @@ public class Bank : MonoBehaviour {
 
 	}
 
+	public static bool subtractHoney(int amount) {
+
+		int temp;
+
+		temp = honey;
+
+		if ((temp -= amount) >= 0) {
+			honey = temp;
+			return true;
+		}
+
+		return false;
+
+	}
+
 	public static void addPollen(int amount) {
 		pollen += amount;
 	}

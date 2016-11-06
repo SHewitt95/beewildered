@@ -20,6 +20,17 @@ public class SnapMovement : MonoBehaviour {
 	public float bottomBound;
 	public int tileSize;
 
+	public static GameObject player;
+
+	public GameObject dandelion;
+	public GameObject appleTree;
+	public GameObject orangeTree;
+	public GameObject sunFlower;
+
+	private GameObject currentModel;
+
+	static GameObject theModel;
+
 	// Use this for initialization
 	void Start () {
 
@@ -33,6 +44,8 @@ public class SnapMovement : MonoBehaviour {
 		leftBound = bottomBound + 3;
 		topBound = 285;
 		rightBound = topBound + 3;
+
+		player = GameObject.FindGameObjectWithTag("Player");
 
 	}
 	
@@ -91,5 +104,46 @@ public class SnapMovement : MonoBehaviour {
 		staticCurrentPos = currentPos;
 		//Debug.Log (currentPos);
 
+	}
+
+	public void changeCurrentModel(string model) {
+
+		Vector3 pos = new Vector3 (transform.position.x, 3, 150);
+		Build.currentBuildObject = model;
+
+		switch (model) {
+		case "dandelion":
+			theModel = (GameObject) Instantiate (dandelion, player.transform.position, player.transform.rotation);
+			//DestroyImmediate (this.gameObject, true);
+			gameObject.transform.localScale = new Vector3(0,0,0);
+			//currentModel = theModel;
+			break;
+
+		case "apple tree":
+			theModel = (GameObject) Instantiate (appleTree, player.transform.position, player.transform.rotation);
+			//DestroyImmediate (this.gameObject, true);
+			gameObject.transform.localScale = new Vector3(0,0,0);
+			//currentModel = theModel;
+			break;
+
+		case "orange tree":
+			theModel = (GameObject) Instantiate (orangeTree, player.transform.position, player.transform.rotation);
+			//DestroyImmediate (this.gameObject, true);
+			gameObject.transform.localScale = new Vector3(0,0,0);
+			//currentModel = theModel;
+			break;
+
+		case "sunflowers":
+			theModel = (GameObject) Instantiate (sunFlower, player.transform.position, player.transform.rotation);
+			//DestroyImmediate (this.gameObject, true);
+			gameObject.transform.localScale = new Vector3(0,0,0);
+			//currentModel = theModel;
+			break;
+		}
+	}
+
+	public static void restoreModel() {
+		Destroy (theModel);
+		player.gameObject.transform.localScale = new Vector3(1,1,1);
 	}
 }

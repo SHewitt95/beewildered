@@ -14,9 +14,13 @@ public class CameraMove : MonoBehaviour {
 	public float xBound;
 	public float zBound;
 
+
+
+
 	// Use this for initialization
 	void Start () {
 		//Debug.Log ("Test");
+
 	}
 	
 	// Update is called once per frame
@@ -59,7 +63,14 @@ public class CameraMove : MonoBehaviour {
 	void moveWithObject() {
 		GameObject player = GameObject.FindGameObjectWithTag ("Player").gameObject;
 
-		transform.position = new Vector3 (player.transform.position.x, 10, player.transform.position.z - 5);
+		//print (gameObject.name);
+		if (gameObject.name != "Main Camera") {
+			//print (gameObject.name);
+			transform.position = new Vector3 (player.transform.position.x, player.transform.position.y, player.transform.position.z);
+		} else {
+			transform.position = new Vector3 (player.transform.position.x, 10, player.transform.position.z - 8);
+		}
+
 	}
 
 	void showNeutralControls() {

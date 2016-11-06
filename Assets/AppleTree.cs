@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Dandelion : MonoBehaviour {
+public class AppleTree : MonoBehaviour {
 
 	int position;
 	int lifespan;
 	int pollenValue;
-	static int nectarValue = 3;
-	static int cost = 0;
+	static int nectarValue = 6;
+	static int cost = 10;
 
 	int frames;
 	int minute;
@@ -18,16 +18,17 @@ public class Dandelion : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		position = SnapMovement.staticCurrentPos;
-		lifespan = 6;
-		pollenValue = 1;
+		lifespan = 10;
+		pollenValue = 3;
 
 		player = GameObject.FindGameObjectWithTag ("Player");
 
 		frames = 0;
 		minute = 60;
-		rate = 10;
+		rate = 15;
+	
 	}
-
+	
 	// Update is called once per frame
 	void Update () {
 		frames += 1;
@@ -41,7 +42,7 @@ public class Dandelion : MonoBehaviour {
 			frames = 0;
 			Destroy (this.gameObject);
 		}
-
+	
 	}
 
 	public static int getNectarValue() {

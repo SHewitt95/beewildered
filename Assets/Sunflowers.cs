@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Dandelion : MonoBehaviour {
+public class Sunflowers : MonoBehaviour {
 
 	int position;
 	int lifespan;

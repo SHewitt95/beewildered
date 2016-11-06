@@ -2,14 +2,18 @@
 using System.Collections;
 
 public class Reticle : MonoBehaviour {
-	public Transform[] spots;
+
+
+
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+
 }

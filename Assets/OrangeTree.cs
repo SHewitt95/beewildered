@@ -13,6 +13,12 @@ public class OrangeTree : MonoBehaviour {
 	int minute;
 	int rate;
 
+	public bool collectingPollen = false;
+	float decay = 0f;
+	float decayLimit = 4500;
+
+	static int oranges = 24;
+
 	public static GameObject player;
 
 	// Use this for initialization
@@ -31,15 +37,23 @@ public class OrangeTree : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		frames += 1;
-		if ((frames%(minute*rate)) == 0) {
-			Bank.addPollen (pollenValue);
-			lifespan--;
+
+		if (!collectingPollen) {
+			reduceLifespan ();
+		} else {
+			decay = 0;
 		}
 
-		if (lifespan==0) {
+	}
+
+	void reduceLifespan() {
+		decay++;
+
+		if (decay == decayLimit) {
+			//print (position);
 			GameManager.grid [position] = 0;
-			frames = 0;
+			GameManager.gridValues [position] = 0;
+			GameManager.allGameObjects [position] = null;
 			Destroy (this.gameObject);
 		}
 

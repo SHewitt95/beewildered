@@ -6,43 +6,71 @@ public class AppleTree : MonoBehaviour {
 	int position;
 	int lifespan;
 	int pollenValue;
-	static int nectarValue = 6;
-	static int cost = 10;
+	static int nectarValue;
+	static int cost = 15;
+	int productionRate;
 
-	int frames;
-	int minute;
-	int rate;
+	public bool collectingPollen = false;
+	float decay = 0f;
+	float decayLimit = 6000;
 
-	public static GameObject player;
+	int currentTime;
+
+	public GameObject player;
 
 	// Use this for initialization
 	void Start () {
 		position = SnapMovement.staticCurrentPos;
-		lifespan = 10;
+		lifespan = 240;
 		pollenValue = 3;
+		nectarValue = 9;
+		cost = 15;
+		productionRate = 15;
+
+		collectingPollen = false;
 
 		player = GameObject.FindGameObjectWithTag ("Player");
-
-		frames = 0;
-		minute = 60;
-		rate = 15;
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		frames += 1;
-		if ((frames%(minute*rate)) == 0) {
+
+		if (!collectingPollen) {
+			reduceLifespan ();
+		} else {
+			decay = 0;
+		}
+	
+	}
+
+	void reduceLifespan() {
+		decay++;
+
+		if (decay == decayLimit) {
+			//print (position);
+			GameManager.grid [position] = 0;
+			GameManager.gridValues [position] = 0;
+			GameManager.allGameObjects [position] = null;
+			Destroy (this.gameObject);
+		}
+
+	}
+
+	public void producePollen() {
+		if (currentTime % productionRate == 0) {
 			Bank.addPollen (pollenValue);
+		}
+	}
+
+	public void reduceLifeSpan() {
+		if (currentTime % productionRate == 0) {
 			lifespan--;
 		}
 
-		if (lifespan==0) {
+		if (lifespan == 0) {
 			GameManager.grid [position] = 0;
-			frames = 0;
 			Destroy (this.gameObject);
 		}
-	
 	}
 
 	public static int getNectarValue() {

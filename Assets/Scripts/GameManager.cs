@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour {
 	int rate;
 	int minute;
 
+	public static int numOfPlants = 0;
+
 	public enum GameStates {CAMERA, BUILD, COLLECT, DISTRIBUTE, HIVE, INTRO, START};
 
 	public bool hiveSpawned = false;
@@ -34,6 +37,8 @@ public class GameManager : MonoBehaviour {
 
 	// Keeps track of the value associated with each grid position.
 	public static int[] gridValues;
+
+	public static List<GameObject> allGameObjects;
 
 
 
@@ -89,8 +94,10 @@ public class GameManager : MonoBehaviour {
 
 		// TODO: Make it so random user input is ignored. They must follow the game sequence.
 		// Ex: While intro is going, the BUILD input should not function.
-		checkUserInput (Input.inputString);
-
+		if (currentState != GameStates.INTRO) {
+			checkUserInput (Input.inputString);
+		}
+			
 		switch (GetCurrentState()) {
 			case GameStates.INTRO:
 				GameManager.neutralPanel.gameObject.SetActive (false);
@@ -129,11 +136,15 @@ public class GameManager : MonoBehaviour {
 	void initGrid() {
 		grid = new int[400]; //20 rows * 20 columns = 400 total tiles.
 		gridValues = new int[400]; //20 rows * 20 columns = 400 total tiles.
+		allGameObjects = new List<GameObject>();
 
 		for (int i = 0; i < grid.Length; i++) {
 			grid [i] = 0;
 			gridValues [i] = 0;
+			allGameObjects.Add (null);
 		}
+
+		print (allGameObjects.Count);
 	}
 
 	public GameStates GetCurrentState() {
@@ -158,25 +169,13 @@ public class GameManager : MonoBehaviour {
 			case "b":
 			currentState = GameStates.BUILD;
 				break;
-			case "B":
-			currentState = GameStates.BUILD;
-				break;
 			case "v":
-			currentState = GameStates.COLLECT;
-				break;
-			case "V":
 			currentState = GameStates.COLLECT;
 				break;
 			case "n":
 			currentState = GameStates.DISTRIBUTE;
 				break;
-			case "N":
-			currentState = GameStates.DISTRIBUTE;
-				break;
 			case "m":
-			currentState = GameStates.HIVE;
-				break;
-			case "M":
 			currentState = GameStates.HIVE;
 				break;
 			case "x":

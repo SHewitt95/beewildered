@@ -99,13 +99,17 @@
      <Compile Include="Assets\Scripts\HivePlacement.cs" />
      <Compile Include="Assets\Scripts\Intro.cs" />
      <Compile Include="Assets\Scripts\Move.cs" />
+     <Compile Include="Assets\Scripts\Plant.cs" />
      <Compile Include="Assets\Scripts\Reticle.cs" />
      <Compile Include="Assets\Scripts\SnapGrid.cs" />
      <Compile Include="Assets\Scripts\SnapMovement.cs" />
+     <Compile Include="Assets\Scripts\Swarm.cs" />
+     <Compile Include="Assets\Scripts\TestPlant.cs" />
      <Compile Include="Assets\Scripts\TileGenerator.cs" />
      <Compile Include="Assets\Scripts\TreeGenerator.cs" />
      <Compile Include="Assets\Scripts\UIController.cs" />
      <Compile Include="Assets\Sunflowers.cs" />
+     <Compile Include="Assets\SwarmKeeper.cs" />
      <Compile Include="Assets\TabbedMenu.cs" />
      <None Include="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Handpainted Forest Environment Free Sample\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

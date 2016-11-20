@@ -14,6 +14,17 @@ public class UIController : MonoBehaviour {
 	public GameObject bankPanel;
 	public GameObject buildPanel;
 	public GameObject buildSwarmPanel;
+	public GameObject selectedSwarmPanel;
+
+	public Text pressEnterToBuild;
+	public Text pressEnterToCollect;
+	public Text collectCounter;
+	public Text incorrectCollect;
+
+	Button collectButton;
+
+	GameObject hive;
+	GameObject player;
 
 	void Awake () {
 		//neutralPanel = GameObject.FindGameObjectWithTag ("Neutral Panel");
@@ -24,13 +35,21 @@ public class UIController : MonoBehaviour {
 
 		//neutralPanel = GameObject.FindGameObjectWithTag ("Neutral Panel");
 
+		pressEnterToBuild.enabled = false;
+		pressEnterToCollect.enabled = false;
+		collectCounter.enabled = false;
+		incorrectCollect.enabled = false;
+
 		howToPlay.gameObject.SetActive(false);
 		collectPanel.gameObject.SetActive(false);
 		seedsPanel.gameObject.SetActive(false);
 		bankPanel.gameObject.SetActive(false);
 		buildPanel.gameObject.SetActive(false);
 		buildSwarmPanel.gameObject.SetActive (false);
+		selectedSwarmPanel.gameObject.SetActive (false);
 
+		hidePressEnterToBuild ();
+		hidePressEnterToCollect ();
 
 	}
 	
@@ -40,6 +59,66 @@ public class UIController : MonoBehaviour {
 		if (GameManager.instance.GetCurrentState () == GameManager.GameStates.CAMERA) {
 			bankPanel.gameObject.SetActive(true);
 		}
+
+
+		if (GameManager.numOfPlants == 0) {
+			//print(GameObject.FindGameObjectWithTag ("Collect Button").GetComponent<Button>());
+			//GameObject.FindGameObjectWithTag ();
+		} else {
+			//collectButton = GameObject.Find ("Collect Button").SetActive (true);
+		}
+
+	}
+
+	public void showPressEnterToCollect() {
+
+		if (GameManager.numOfPlants > 0) {
+			pressEnterToCollect.enabled = true;
+			pressEnterToCollect.text = "Press \"Enter\" on your plants to have a Swarm collect from it.";
+		} else {
+			incorrectCollect.enabled = true;
+			incorrectCollect.text = "You need to Build Plants before you Collect!";
+
+			StartCoroutine (hideIncorrectCollectText());
+		}
+
+	}
+
+	IEnumerator hideIncorrectCollectText() {
+		yield return new WaitForSeconds (3f);
+		incorrectCollect.enabled = false;
+
+	}
+
+	public void hidePressEnterToCollect() {
+		pressEnterToCollect.enabled = false;
+	}
+
+	public void showCollectCount(int i) {
+		collectCounter.enabled = true;
+		collectCounter.text = "Plants left to pick: " + i;
+	}
+
+	public void hideCollectCount() {
+		collectCounter.enabled = false;
+		collectCounter.text = "";
+	}
+
+	public void hidePressEnterToBuild() {
+		pressEnterToBuild.enabled = false;
+	}
+
+	public void showPressEnterToBuild() {
+		pressEnterToBuild.enabled = true;
+		pressEnterToBuild.text = "Press \"Enter\" to Build when the Plant glows Green.";
+	}
+
+	public void openSelectedSwarmPanel() {
+		selectedSwarmPanel.gameObject.SetActive (true);
+	}
+
+	public void closeSelectedSwarmPanel() {
+		selectedSwarmPanel.gameObject.SetActive (false);
 	}
 		
 	public void openBuildSwarmPanel() {
@@ -100,6 +179,8 @@ public class UIController : MonoBehaviour {
 		openingMenu.gameObject.SetActive (false);
 		GameManager.introPanel.SetActive (true);
 		GameManager.instance.checkUserInput ("y");
+
+		//GameManager.instance.checkUserInput ("v");
 	}
 
 	public void howToPlayButton() {
@@ -113,8 +194,12 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void sendCollectInput() {
-		GameManager.instance.checkUserInput ("v");
-		collectPanel.gameObject.SetActive (false);
+
+		if (GameManager.numOfPlants > 0) {
+			GameManager.instance.checkUserInput ("v");
+		}
+
+		selectedSwarmPanel.gameObject.SetActive (false);
 
 		//print (Input.GetButtonDown("Swarm 1"));
 	}
@@ -126,6 +211,10 @@ public class UIController : MonoBehaviour {
 		//print (Input.GetButtonDown("Swarm 1"));
 	}
 
+	public void sendCameraInput() {
+		GameManager.instance.checkUserInput ("x");
+	}
+
 	public void nextText() {
 
 		//if (Intro.introHivePlaced) {
@@ -134,5 +223,14 @@ public class UIController : MonoBehaviour {
 		//}
 
 
+	}
+
+	public void teleportToHive() {
+		hive = GameObject.FindGameObjectWithTag ("Hive");
+		player = GameObject.FindGameObjectWithTag ("Player");
+
+		Vector3 pos = hive.gameObject.transform.position;
+
+		player.gameObject.transform.position = pos;
 	}
 }

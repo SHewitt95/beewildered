@@ -88,7 +88,7 @@ public class Move : MonoBehaviour {
 			Bank.addNectar (sumArrayValues(Collect.patchValues));
 			active = false;
 
-			Destroy (this.gameObject);
+			//Destroy (this.gameObject);
 		
 		}
 			

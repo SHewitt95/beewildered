@@ -31,6 +31,8 @@ public class SnapMovement : MonoBehaviour {
 
 	static GameObject theModel;
 
+	Behaviour halo;
+
 	// Use this for initialization
 	void Start () {
 
@@ -47,6 +49,7 @@ public class SnapMovement : MonoBehaviour {
 
 		player = GameObject.FindGameObjectWithTag("Player");
 
+
 	}
 	
 	// Update is called once per frame
@@ -55,6 +58,21 @@ public class SnapMovement : MonoBehaviour {
 
 		if (GameManager.instance.GetCurrentState() != GameManager.GameStates.START) {
 			MoveDiscrete ();
+		}
+
+		if (GameManager.instance.GetCurrentState () == GameManager.GameStates.BUILD) {
+			//GetComponent<Light> ()
+
+			GetComponent<Light> ().enabled = true;
+
+			if (GameManager.grid [currentPos] != 0) {
+				GetComponent<Light> ().color = Color.red;
+			} else {
+				GetComponent<Light> ().color = Color.green;
+			}
+
+		} else {
+			GetComponent<Light> ().enabled = false;
 		}
 
 	

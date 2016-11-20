@@ -35,7 +35,7 @@ public class TreeGenerator : MonoBehaviour {
 			for (column = 0; column < max; column++) { // Make columns
 
 				// Randomly spawn a gameobject
-				if (Random.value < 0.3) {
+				if (Random.value < 0.2) {
 
 					float myValue = Random.value;
 

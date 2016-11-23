@@ -102,8 +102,16 @@ public class Swarm : MonoBehaviour
 			return true;
 		}
 
+		addLightPath ();
+
 		patchLocations.Add (hive);
 		return false;
+	}
+
+	void addLightPath() {
+		foreach(GameObject obj in patchLocations) {
+
+		}
 	}
 
 	public void clearPathLocations() {

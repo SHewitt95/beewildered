@@ -9,7 +9,7 @@ public class Build : MonoBehaviour {
 	public GameObject sunflowers;
 
 	//Trees
-	public AppleTree appleTree;
+	public GameObject appleTree;
 	public GameObject orangeTree;
 
 	//Bushes

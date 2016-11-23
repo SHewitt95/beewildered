@@ -14,6 +14,9 @@ public class AppleTree : MonoBehaviour {
 	float decay = 0f;
 	float decayLimit = 6000;
 
+	float totalSeconds = 1f;
+	float maxIntensity = 5f;
+
 	int currentTime;
 
 	public GameObject player;
@@ -40,7 +43,43 @@ public class AppleTree : MonoBehaviour {
 		} else {
 			decay = 0;
 		}
+
+		if (GameManager.instance.GetCurrentState () == GameManager.GameStates.COLLECT) {
+			GetComponent<Light> ().enabled = true;
+
+			if (collectingPollen) {
+				GetComponent<Light> ().color = Color.red;
+			} else {
+				GetComponent<Light> ().color = Color.white;
+			}
+
+		} else {
+			GetComponent<Light> ().enabled = false;
+		}
+
+		if (decay >= decayLimit / 2 &&
+			GameManager.instance.GetCurrentState() == GameManager.GameStates.CAMERA) {
+			GetComponent<Light> ().enabled = true;
+			GetComponent<Light> ().color = Color.red;
+			blinkLight ();
+		}
 	
+	}
+
+	IEnumerator blinkLight() {
+		float waitTime = totalSeconds / 2;
+
+		while(GetComponent<Light>().intensity < maxIntensity) {
+			GetComponent<Light> ().intensity += Time.deltaTime / waitTime;
+			yield return null;
+		}
+
+		while (GetComponent<Light>().intensity > 0) {
+			GetComponent<Light> ().intensity -= Time.deltaTime / waitTime;
+			yield return null;
+		}
+
+		yield return null;
 	}
 
 	void reduceLifespan() {

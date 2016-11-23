@@ -57,7 +57,8 @@ public class Collect : MonoBehaviour {
 
 			if (Input.GetKeyDown(KeyCode.Return) &&
 				GameManager.grid[SnapMovement.staticCurrentPos] == 2 &&
-				spotsSelected < swarm.gameObject.GetComponent<Swarm>().getPatchLimit()) {
+				spotsSelected < swarm.gameObject.GetComponent<Swarm>().getPatchLimit() && 
+				!collectingPollen(GameManager.allGameObjects[SnapMovement.staticCurrentPos])) {
 				//Transform temp = player.transform;
 
 				patchValues[spotsSelected] = GameManager.gridValues[SnapMovement.staticCurrentPos];
@@ -99,6 +100,26 @@ public class Collect : MonoBehaviour {
 
 
 	
+	}
+
+	bool collectingPollen(GameObject obj) {
+		switch(obj.name) {
+		case "Dandelions(Clone)":
+			return obj.GetComponent<Dandelion> ().collectingPollen;
+			break;
+		case "SunFlowers(Clone)":
+			return obj.GetComponent<Sunflowers> ().collectingPollen;
+			break;
+		case "OrangeTree(Clone)":
+			return obj.GetComponent<OrangeTree> ().collectingPollen;
+			break;
+		case "Apple Tree(Clone)":
+			return obj.GetComponent<AppleTree> ().collectingPollen;
+			break;
+		default:
+			return false;
+			break;
+		}
 	}
 
 	void setPollenCollection(GameObject obj) {

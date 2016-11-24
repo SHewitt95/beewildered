@@ -11,6 +11,8 @@ public class SwarmKeeper : MonoBehaviour {
 	public enum SwarmStates {BUILD, COLLECT, NURSE, IDLE, COOLDOWN};
 
 	GameObject hive;
+
+	public UIController uicontroller;
 		
 
 	// Use this for initialization
@@ -65,6 +67,17 @@ public class SwarmKeeper : MonoBehaviour {
 
 	public void setSelectedSwarm(int num) {
 		selectedSwarm = allSwarms[num];
+	}
+
+	public void upgradeSwarm() {
+
+		if (Bank.subtractHoney (100)) {
+			selectedSwarm.upgrade ();
+			uicontroller.showUpgradeNotice ();
+		} else {
+			uicontroller.showUpgradeFail ();
+		}
+
 	}
 
 	public Swarm getSelectedSwarm() {

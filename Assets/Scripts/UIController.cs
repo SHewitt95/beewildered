@@ -20,6 +20,7 @@ public class UIController : MonoBehaviour {
 	public Text pressEnterToCollect;
 	public Text collectCounter;
 	public Text incorrectCollect;
+	public Text upgradeText;
 
 	Button collectButton;
 
@@ -39,6 +40,8 @@ public class UIController : MonoBehaviour {
 		pressEnterToCollect.enabled = false;
 		collectCounter.enabled = false;
 		incorrectCollect.enabled = false;
+		upgradeText.enabled = false;
+
 
 		howToPlay.gameObject.SetActive(false);
 		collectPanel.gameObject.SetActive(false);
@@ -88,6 +91,23 @@ public class UIController : MonoBehaviour {
 		yield return new WaitForSeconds (3f);
 		incorrectCollect.enabled = false;
 
+	}
+
+	public void showUpgradeNotice() {
+		upgradeText.enabled = true;
+		upgradeText.text = "Your Swarm has been upgraded!";
+		StartCoroutine (hideUpgradeNotice());
+	}
+
+	public void showUpgradeFail() {
+		upgradeText.enabled = true;
+		upgradeText.text = "You need more Honey!";
+		StartCoroutine (hideUpgradeNotice());
+	}
+
+	IEnumerator hideUpgradeNotice() {
+		yield return new WaitForSeconds (3f);
+		upgradeText.enabled = false;
 	}
 
 	public void hidePressEnterToCollect() {

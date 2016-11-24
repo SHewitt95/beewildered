@@ -73,6 +73,12 @@ public class Swarm : MonoBehaviour
 
 	}
 
+	public void upgrade() {
+		level++;
+		patchLimit++;
+		agent.speed++;
+	}
+
 	void appendHiveLocation() {
 		patchLocations.Add (hive);
 	}

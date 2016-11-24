@@ -33,7 +33,7 @@ public class Collect : MonoBehaviour {
 	void Start () {
 
 		goals = new Transform[3];
-		patchValues = new int[3];
+		patchValues = new int[99];
 		spotsSelected = 0;
 		goalsGotten = false;
 		player = GameObject.FindGameObjectWithTag ("Player");

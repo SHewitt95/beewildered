@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SwarmKeeper : MonoBehaviour {
 
@@ -8,11 +9,20 @@ public class SwarmKeeper : MonoBehaviour {
 	Swarm[] allSwarms;
 	int numberOfSwarms;
 	Swarm selectedSwarm;
+	int numOfSelectedSwarm;
 	public enum SwarmStates {BUILD, COLLECT, NURSE, IDLE, COOLDOWN};
 
 	GameObject hive;
 
 	public UIController uicontroller;
+
+	static Color c1 = Color.yellow;
+	static Color c2 = Color.red;
+	static Color c3 = Color.blue;
+	static Color c4 = Color.white;
+
+	Color[] allColors = {c1, c2, c3, c4};
+
 		
 
 	// Use this for initialization
@@ -31,6 +41,47 @@ public class SwarmKeeper : MonoBehaviour {
 	void Update () {
 		//print (Time.time);
 
+	}
+
+	public void drawSwarmPath() {
+		List<GameObject> paths = selectedSwarm.getPathLocations ();
+		//print (paths.Count);
+
+		if (paths.Count > 0) {
+
+			int lengthOfLineRenderer = paths.Count + 1;
+			int i = 0;
+
+			//LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>();
+
+			LineRenderer lineRenderer = GetComponent<LineRenderer>();
+			lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+			lineRenderer.SetColors(allColors[numOfSelectedSwarm], allColors[numOfSelectedSwarm]);
+			lineRenderer.SetWidth(1F, 1F);
+			lineRenderer.SetVertexCount(lengthOfLineRenderer);
+
+
+			lineRenderer.SetPositions (makeVector3Array(paths));
+
+		}
+
+
+	}
+
+	Vector3[] makeVector3Array(List<GameObject> list) {
+		//Vector3 array = new Vector3[99];
+
+		List<Vector3> array = new List<Vector3> ();
+		int i = 1;
+
+		array.Add(GameObject.FindGameObjectWithTag ("Hive").transform.position);
+
+		foreach (GameObject obj in list) {
+			array.
+				Add (obj.transform.position);
+		}
+
+		return array.ToArray();
 	}
 
 	public void spawnAllSwarms() {
@@ -67,6 +118,7 @@ public class SwarmKeeper : MonoBehaviour {
 
 	public void setSelectedSwarm(int num) {
 		selectedSwarm = allSwarms[num];
+		numOfSelectedSwarm = num;
 	}
 
 	public void upgradeSwarm() {

@@ -12,8 +12,8 @@ public class Swarm : MonoBehaviour
 
 	SwarmKeeper swarmkeeper;
 
-	int level;
-	int patchLimit;
+	public int level;
+	public int patchLimit;
 
 	float pollenPayload;
 

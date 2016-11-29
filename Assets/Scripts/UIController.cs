@@ -22,6 +22,13 @@ public class UIController : MonoBehaviour {
 	public Text incorrectCollect;
 	public Text upgradeText;
 
+	public Text swarmLevel;
+	public Text swarmPatchLimit;
+	public Text swarmCurrentPatches;
+	public Text swarmSpeed;
+
+	public SwarmKeeper swarmkeeper;
+
 	Button collectButton;
 
 	GameObject hive;
@@ -41,6 +48,11 @@ public class UIController : MonoBehaviour {
 		collectCounter.enabled = false;
 		incorrectCollect.enabled = false;
 		upgradeText.enabled = false;
+
+		swarmLevel.enabled = false;
+		swarmPatchLimit.enabled = false;
+		swarmCurrentPatches.enabled = false;
+		swarmSpeed.enabled = false;
 
 
 		howToPlay.gameObject.SetActive(false);
@@ -70,6 +82,22 @@ public class UIController : MonoBehaviour {
 		} else {
 			//collectButton = GameObject.Find ("Collect Button").SetActive (true);
 		}
+
+	}
+
+	public void showSwarmStats() {
+		
+		Swarm currentSwarm = swarmkeeper.getSelectedSwarm ();
+
+		swarmLevel.enabled = true;
+		swarmPatchLimit.enabled = true;
+		swarmCurrentPatches.enabled = true;
+		swarmSpeed.enabled = true;
+
+		swarmLevel.text = "Level: " + currentSwarm.level;
+		swarmPatchLimit.text = "Max Number of Plants: " + currentSwarm.patchLimit;
+		swarmCurrentPatches.text = "# of Plants Currently Visiting: " + currentSwarm.getPathLocations().Count;
+		swarmSpeed.text = "Speed: " + currentSwarm.agent.speed;
 
 	}
 
@@ -135,10 +163,15 @@ public class UIController : MonoBehaviour {
 
 	public void openSelectedSwarmPanel() {
 		selectedSwarmPanel.gameObject.SetActive (true);
+		showSwarmStats ();
 	}
 
 	public void closeSelectedSwarmPanel() {
 		selectedSwarmPanel.gameObject.SetActive (false);
+		swarmLevel.enabled = false;
+		swarmPatchLimit.enabled = false;
+		swarmCurrentPatches.enabled = false;
+		swarmSpeed.enabled = false;
 	}
 		
 	public void openBuildSwarmPanel() {

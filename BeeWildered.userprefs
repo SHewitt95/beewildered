@@ -1,14 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Swarm.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Collect.cs">
     <Files>
-      <File FileName="Assets\Scripts\Collect.cs" Line="120" Column="17" />
-      <File FileName="Assets\SwarmKeeper.cs" Line="51" Column="26" />
-      <File FileName="Assets\Scripts\Swarm.cs" Line="112" Column="43" />
+      <File FileName="Assets\Scripts\Swarm.cs" Line="79" Column="17" />
+      <File FileName="Assets\Scripts\Collect.cs" Line="36" Column="27" />
+      <File FileName="Assets\SwarmKeeper.cs" Line="78" Column="36" />
       <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Build.cs" Line="12" Column="19" />
-      <File FileName="Assets\Scripts\UIController.cs" Line="87" Column="2" />
-      <File FileName="Assets\Scripts\SnapMovement.cs" Line="69" Column="46" />
+      <File FileName="Assets\Scripts\Build.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UIController.cs" Line="104" Column="42" />
+      <File FileName="Assets\Scripts\SnapMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Move.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -28,9 +28,9 @@ public class Bank : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		pollenText.text = "Pollen: " + pollen;
-		nectarText.text = "Nectar: " + nectar;
-		honeyText.text = "Honey: " + honey;
+		pollenText.text = "" + pollen;
+		nectarText.text = "" + nectar;
+		honeyText.text = "" + honey;
 	
 	}
 

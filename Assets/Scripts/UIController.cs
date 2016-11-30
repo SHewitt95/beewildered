@@ -15,6 +15,7 @@ public class UIController : MonoBehaviour {
 	public GameObject buildPanel;
 	public GameObject buildSwarmPanel;
 	public GameObject selectedSwarmPanel;
+	public GameObject collectSwarmPanel;
 
 	public Text pressEnterToBuild;
 	public Text pressEnterToCollect;
@@ -26,6 +27,11 @@ public class UIController : MonoBehaviour {
 	public Text swarmPatchLimit;
 	public Text swarmCurrentPatches;
 	public Text swarmSpeed;
+
+	public Button build;
+	public Button collect;
+	public Button hiveButton;
+	public Button nurse;
 
 	public SwarmKeeper swarmkeeper;
 
@@ -62,6 +68,7 @@ public class UIController : MonoBehaviour {
 		buildPanel.gameObject.SetActive(false);
 		buildSwarmPanel.gameObject.SetActive (false);
 		selectedSwarmPanel.gameObject.SetActive (false);
+		collectSwarmPanel.gameObject.SetActive (false);
 
 		hidePressEnterToBuild ();
 		hidePressEnterToCollect ();
@@ -83,6 +90,14 @@ public class UIController : MonoBehaviour {
 			//collectButton = GameObject.Find ("Collect Button").SetActive (true);
 		}
 
+	}
+
+	public void openSwarmPanel() {
+		collectSwarmPanel.gameObject.SetActive (true);
+	}
+
+	public void closeSwarmPanel() {
+		collectSwarmPanel.gameObject.SetActive (false);
 	}
 
 	public void showSwarmStats() {
@@ -207,10 +222,24 @@ public class UIController : MonoBehaviour {
 		neutralPanel.gameObject.SetActive (true);
 		GameManager.instance.checkUserInput ("x");
 		//print ("Neutral ON!");
+		build.gameObject.SetActive (true);
+		collect.gameObject.SetActive (true);
+		nurse.gameObject.SetActive (true);
+		hiveButton.gameObject.SetActive (true);
 	}
 
 	public void closeNeutral() {
 		neutralPanel.gameObject.SetActive (false);
+		//build.enabled = false;
+		//collect.enabled = false;
+		//hiveButton.enabled = false;
+		//nurse.enabled = false;
+
+		build.gameObject.SetActive (false);
+		collect.gameObject.SetActive (false);
+		nurse.gameObject.SetActive (false);
+		hiveButton.gameObject.SetActive (false);
+
 	}
 
 	void hideNeutralButtons() {

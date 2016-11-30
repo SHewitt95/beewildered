@@ -143,6 +143,7 @@ public class Build : MonoBehaviour {
 
 				SnapMovement.restoreModel ();
 				GameManager.instance.resetState ();
+				uicontroller.openNeutralPanel ();
 				//Bank.subtractNectar (10);
 			}
 

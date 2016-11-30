@@ -75,6 +75,7 @@ public class Collect : MonoBehaviour {
 
 
 				spotsSelected++;
+				GameManager.numOfPlants--;
 			}
 
 			if (spotsSelected == swarm.gameObject.GetComponent<Swarm>().getPatchLimit() ||

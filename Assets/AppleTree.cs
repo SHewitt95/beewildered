@@ -60,7 +60,7 @@ public class AppleTree : MonoBehaviour {
 		if (decay >= decayLimit / 2 &&
 			GameManager.instance.GetCurrentState() == GameManager.GameStates.CAMERA) {
 			GetComponent<Light> ().enabled = true;
-			GetComponent<Light> ().color = Color.red;
+			GetComponent<Light> ().color = Color.yellow;
 			blinkLight ();
 		}
 	
@@ -90,6 +90,7 @@ public class AppleTree : MonoBehaviour {
 			GameManager.grid [position] = 0;
 			GameManager.gridValues [position] = 0;
 			GameManager.allGameObjects [position] = null;
+			GameManager.numOfPlants--;
 			Destroy (this.gameObject);
 		}
 

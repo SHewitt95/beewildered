@@ -124,6 +124,7 @@ public class Swarm : MonoBehaviour
 		//patchLocations.Clear ();
 		foreach (GameObject obj in patchLocations) {
 			removePollenCollection (obj);
+			GameManager.numOfPlants++;
 		}
 
 		patchLocations = new List<GameObject> ();

@@ -95,10 +95,14 @@ public class SwarmKeeper : MonoBehaviour {
 
 	// Used when rerouting a Swarm
 	public void killSwitch() {
-		selectedSwarm.clearPathLocations ();
-		selectedSwarm.i = 0;
-		selectedSwarm.changeState (SwarmKeeper.SwarmStates.IDLE);
-		selectedSwarm.agent.destination = GameObject.FindGameObjectWithTag ("Hive").transform.position;
+
+		if (selectedSwarm) {
+			selectedSwarm.clearPathLocations ();
+			selectedSwarm.i = 0;
+			selectedSwarm.changeState (SwarmKeeper.SwarmStates.IDLE);
+			selectedSwarm.agent.destination = GameObject.FindGameObjectWithTag ("Hive").transform.position;
+		}
+
 	}
 
 	// Used when placing a Swarm on cooldown.

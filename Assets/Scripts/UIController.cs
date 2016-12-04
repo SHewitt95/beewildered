@@ -37,6 +37,7 @@ public class UIController : MonoBehaviour {
 
 	Button collectButton;
 
+
 	GameObject hive;
 	GameObject player;
 
@@ -46,6 +47,7 @@ public class UIController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 
 		//neutralPanel = GameObject.FindGameObjectWithTag ("Neutral Panel");
 
@@ -69,6 +71,10 @@ public class UIController : MonoBehaviour {
 		buildSwarmPanel.gameObject.SetActive (false);
 		selectedSwarmPanel.gameObject.SetActive (false);
 		collectSwarmPanel.gameObject.SetActive (false);
+
+		foreach (Transform obj in collectSwarmPanel.transform) {
+			print (obj.name);
+		}
 
 		hidePressEnterToBuild ();
 		hidePressEnterToCollect ();
@@ -218,14 +224,22 @@ public class UIController : MonoBehaviour {
 		hivePanel.gameObject.SetActive(false);
 	}
 
+	public void openHivePanel() {
+		hivePanel.gameObject.SetActive(true);
+	}
+
 	public void openNeutralPanel() {
 		neutralPanel.gameObject.SetActive (true);
-		GameManager.instance.checkUserInput ("x");
+		//GameManager.instance.checkUserInput ("x");
 		//print ("Neutral ON!");
 		build.gameObject.SetActive (true);
 		collect.gameObject.SetActive (true);
 		nurse.gameObject.SetActive (true);
 		hiveButton.gameObject.SetActive (true);
+	}
+
+	public void sendNeutralInput () {
+		GameManager.instance.checkUserInput ("x");
 	}
 
 	public void closeNeutral() {

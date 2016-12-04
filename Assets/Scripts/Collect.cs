@@ -47,8 +47,11 @@ public class Collect : MonoBehaviour {
 
 		if (GameManager.instance.GetCurrentState() == GameManager.GameStates.COLLECT) {
 
+
+
 			Debug.Log ("Collect!");
 			Swarm swarm = swarmKeeper.gameObject.GetComponent<SwarmKeeper>().getSelectedSwarm();
+			uicontroller.showPressEnterToCollect();
 			uicontroller.showCollectCount (swarm.getPatchLimit()-spotsSelected);
 
 			if (swarm.gameObject.GetComponent<Swarm> ().getState() == SwarmKeeper.SwarmStates.COLLECT) {
@@ -60,6 +63,7 @@ public class Collect : MonoBehaviour {
 				spotsSelected < swarm.gameObject.GetComponent<Swarm>().getPatchLimit() && 
 				!collectingPollen(GameManager.allGameObjects[SnapMovement.staticCurrentPos])) {
 				//Transform temp = player.transform;
+
 
 				patchValues[spotsSelected] = GameManager.gridValues[SnapMovement.staticCurrentPos];
 
@@ -79,7 +83,7 @@ public class Collect : MonoBehaviour {
 			}
 
 			if (spotsSelected == swarm.gameObject.GetComponent<Swarm>().getPatchLimit() ||
-				GameManager.numOfPlants <= spotsSelected) {
+				GameManager.numOfPlants < spotsSelected) {
 				//GameObject newSwarm;
 				//hive = GameObject.FindGameObjectWithTag ("Hive");
 				//newSwarm = (GameObject) Instantiate (swarm, hive.transform.position, hive.transform.rotation);
@@ -91,6 +95,7 @@ public class Collect : MonoBehaviour {
 				swarm.gameObject.GetComponent<Swarm> ().changeState (SwarmKeeper.SwarmStates.COLLECT);
 				uicontroller.hidePressEnterToCollect ();
 				uicontroller.hideCollectCount ();
+				uicontroller.openNeutralPanel ();
 				GameManager.instance.resetState ();
 				//printGridValues ();
 			}

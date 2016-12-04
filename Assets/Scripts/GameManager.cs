@@ -92,6 +92,8 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		print ("Num of Plants: " + numOfPlants);
+
 		// TODO: Make it so random user input is ignored. They must follow the game sequence.
 		// Ex: While intro is going, the BUILD input should not function.
 		if (currentState != GameStates.INTRO) {

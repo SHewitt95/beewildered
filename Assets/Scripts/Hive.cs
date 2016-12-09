@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Hive : MonoBehaviour {
 
-	public GameObject hivePanel;
 
 	// Use this for initialization
 	void Start () {
@@ -15,9 +14,36 @@ public class Hive : MonoBehaviour {
 	
 	}
 
-	public static void InitiateHiveState() {
-		Debug.Log ("Hive!");
-		GameManager.hivePanel.gameObject.SetActive (true);
-		//GameManager.canvas.
+	public void purchaseItem(string item) {
+
+		switch (item) {
+
+		case "Dandelion":
+			if (Bank.subtractHoney(Dandelion.getCost())) {
+				Inventory.incrementItem (item);
+			}
+			break;
+		case "Sunflower":
+			if (Bank.subtractHoney(Sunflowers.getCost())) {
+				Inventory.incrementItem (item);
+			}
+			break;
+		case "Orange Tree":
+			if (Bank.subtractHoney(OrangeTree.getCost())) {
+				Inventory.incrementItem (item);
+			}
+			break;
+		case "Apple Tree":
+			if (Bank.subtractHoney(AppleTree.getCost())) {
+				Inventory.incrementItem (item);
+			}
+			break;
+		default:
+			break;
+
+		}
+
 	}
+
+
 }

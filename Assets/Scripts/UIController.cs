@@ -221,21 +221,31 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void closeHivePanel() {
-		hivePanel.gameObject.SetActive(false);
+		hivePanel.gameObject.SetActive (false);
+		for (int i = 0; i < hivePanel.transform.childCount; i++) {
+			hivePanel.transform.GetChild (i).gameObject.SetActive (false);
+		}
 	}
 
 	public void openHivePanel() {
-		hivePanel.gameObject.SetActive(true);
+		hivePanel.gameObject.SetActive (true);
+		for (int i = 0; i < hivePanel.transform.childCount; i++) {
+			hivePanel.transform.GetChild (i).gameObject.SetActive (true);
+		}
 	}
 
 	public void openNeutralPanel() {
 		neutralPanel.gameObject.SetActive (true);
 		//GameManager.instance.checkUserInput ("x");
 		//print ("Neutral ON!");
-		build.gameObject.SetActive (true);
+		/*build.gameObject.SetActive (true);
 		collect.gameObject.SetActive (true);
 		nurse.gameObject.SetActive (true);
-		hiveButton.gameObject.SetActive (true);
+		hiveButton.gameObject.SetActive (true);*/
+
+		for (int i = 0; i < neutralPanel.transform.childCount; i++) {
+			neutralPanel.transform.GetChild (i).gameObject.SetActive (true);
+		}
 	}
 
 	public void sendNeutralInput () {
@@ -243,17 +253,36 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void closeNeutral() {
-		neutralPanel.gameObject.SetActive (false);
+		//neutralPanel.gameObject.SetActive (false);
+		//bankPanel.gameObject.SetActive (false);
 		//build.enabled = false;
 		//collect.enabled = false;
 		//hiveButton.enabled = false;
 		//nurse.enabled = false;
 
+		for (int i = 0; i < neutralPanel.transform.childCount; i++) {
+			neutralPanel.transform.GetChild (i).gameObject.SetActive (false);
+		}
+
+		/*
 		build.gameObject.SetActive (false);
 		collect.gameObject.SetActive (false);
 		nurse.gameObject.SetActive (false);
 		hiveButton.gameObject.SetActive (false);
+		*/
 
+	}
+
+	public void openBankPanel() {
+		for (int i = 0; i < bankPanel.transform.childCount; i++) {
+			bankPanel.transform.GetChild (i).gameObject.SetActive (true);
+		}
+	}
+
+	public void closeBankPanel() {
+		for (int i = 0; i < bankPanel.transform.childCount; i++) {
+			bankPanel.transform.GetChild (i).gameObject.SetActive (false);
+		}
 	}
 
 	void hideNeutralButtons() {

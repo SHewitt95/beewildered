@@ -125,7 +125,6 @@ public class GameManager : MonoBehaviour {
 
 			case GameStates.HIVE:
 				GameManager.neutralPanel.gameObject.SetActive (false);
-				Hive.InitiateHiveState ();
 				break;
 
 			default:

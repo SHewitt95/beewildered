@@ -130,28 +130,28 @@ public class SnapMovement : MonoBehaviour {
 		Build.currentBuildObject = model;
 
 		switch (model) {
-		case "dandelion":
+		case "Dandelion":
 			theModel = (GameObject) Instantiate (dandelion, player.transform.position, player.transform.rotation);
 			//DestroyImmediate (this.gameObject, true);
 			gameObject.transform.localScale = new Vector3(0,0,0);
 			//currentModel = theModel;
 			break;
 
-		case "apple tree":
+		case "Apple Tree":
 			theModel = (GameObject) Instantiate (appleTree, player.transform.position, player.transform.rotation);
 			//DestroyImmediate (this.gameObject, true);
 			gameObject.transform.localScale = new Vector3(0,0,0);
 			//currentModel = theModel;
 			break;
 
-		case "orange tree":
+		case "Orange Tree":
 			theModel = (GameObject) Instantiate (orangeTree, player.transform.position, player.transform.rotation);
 			//DestroyImmediate (this.gameObject, true);
 			gameObject.transform.localScale = new Vector3(0,0,0);
 			//currentModel = theModel;
 			break;
 
-		case "sunflowers":
+		case "Sunflower":
 			theModel = (GameObject) Instantiate (sunFlower, player.transform.position, player.transform.rotation);
 			//DestroyImmediate (this.gameObject, true);
 			gameObject.transform.localScale = new Vector3(0,0,0);

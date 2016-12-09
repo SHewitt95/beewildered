@@ -74,8 +74,8 @@ public class Build : MonoBehaviour {
 
 				switch(currentBuildObject) {
 
-				case "dandelion":
-					if (Bank.subtractHoney(Dandelion.getCost())) {
+				case "Dandelion":
+					if (Inventory.numOfDandelions > 0) {
 						Vector3 pos = new Vector3 (player.transform.position.x, 0, player.transform.position.z);
 
 						GameManager.allGameObjects[SnapMovement.staticCurrentPos] = (GameObject) Instantiate (dandelion, pos, player.transform.rotation);
@@ -88,13 +88,13 @@ public class Build : MonoBehaviour {
 					}
 					break;
 
-				case "apple tree":
+				case "Apple Tree":
 					
 					//Vector3 originalSize = aptree.transform.localScale;
 					//aptree.transform.localScale = new Vector3 (0, 0, 0);
 					//print ("Apple Tree cost: " + aptree.getCost ());
 
-					if (Bank.subtractHoney (AppleTree.getCost ())) {
+					if (Inventory.numOfAppleTrees > 0) {
 						//Vector3 pos1 = new Vector3 (player.transform.position.x, 0, player.transform.position.z);
 
 						//AppleTree aptree = (AppleTree)Instantiate (appleTree, pos1, player.transform.rotation);
@@ -113,8 +113,8 @@ public class Build : MonoBehaviour {
 					}
 					break;
 
-				case "orange tree":
-					if (Bank.subtractHoney(OrangeTree.getCost())) {
+				case "Orange Tree":
+					if (Inventory.numOfOrangeTrees > 0) {
 						Vector3 pos2 = new Vector3 (player.transform.position.x, 0, player.transform.position.z);
 
 						GameManager.allGameObjects[SnapMovement.staticCurrentPos] = (GameObject)Instantiate (orangeTree, pos2, player.transform.rotation);
@@ -125,8 +125,8 @@ public class Build : MonoBehaviour {
 					}
 					break;
 
-				case "sunflowers":
-					if (Bank.subtractHoney(Sunflowers.getCost())) {
+				case "Sunflower":
+					if (Inventory.numOfSunflowers > 0) {
 						Vector3 pos3 = new Vector3 (player.transform.position.x, 0, player.transform.position.z);
 
 						GameManager.allGameObjects[SnapMovement.staticCurrentPos] = (GameObject)Instantiate (sunflowers, pos3, player.transform.rotation);
@@ -137,6 +137,8 @@ public class Build : MonoBehaviour {
 					}
 					break;
 				}
+
+				Inventory.decrementItem (currentBuildObject);
 
 				GameManager.numOfPlants++;
 

@@ -80,10 +80,14 @@ public class Collect : MonoBehaviour {
 
 				spotsSelected++;
 				GameManager.numOfPlants--;
+
+				print ("Spots Selected: " + spotsSelected);
+				print ("Num of Plants: " + GameManager.numOfPlants);
+
 			}
 
 			if (spotsSelected == swarm.gameObject.GetComponent<Swarm>().getPatchLimit() ||
-				GameManager.numOfPlants < spotsSelected) {
+				GameManager.numOfPlants == 0) {
 				//GameObject newSwarm;
 				//hive = GameObject.FindGameObjectWithTag ("Hive");
 				//newSwarm = (GameObject) Instantiate (swarm, hive.transform.position, hive.transform.rotation);
@@ -96,6 +100,7 @@ public class Collect : MonoBehaviour {
 				uicontroller.hidePressEnterToCollect ();
 				uicontroller.hideCollectCount ();
 				uicontroller.openNeutralPanel ();
+				uicontroller.openBankPanel ();
 				GameManager.instance.resetState ();
 				//printGridValues ();
 			}

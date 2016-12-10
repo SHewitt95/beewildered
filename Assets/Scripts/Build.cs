@@ -78,13 +78,16 @@ public class Build : MonoBehaviour {
 					if (Inventory.numOfDandelions > 0) {
 						Vector3 pos = new Vector3 (player.transform.position.x, 0, player.transform.position.z);
 
-						GameManager.allGameObjects[SnapMovement.staticCurrentPos] = (GameObject) Instantiate (dandelion, pos, player.transform.rotation);
+						GameManager.allGameObjects [SnapMovement.staticCurrentPos] = (GameObject)Instantiate (dandelion, pos, player.transform.rotation);
 
 						// Dandelion value
-						GameManager.gridValues [SnapMovement.staticCurrentPos] = Dandelion.getNectarValue();
+						GameManager.gridValues [SnapMovement.staticCurrentPos] = Dandelion.getNectarValue ();
 						GameManager.grid [SnapMovement.staticCurrentPos] = 2;
+						Inventory.decrementItem (currentBuildObject);
 
 						//print (GameManager.allGameObjects[SnapMovement.staticCurrentPos].GetComponent<Dandelion>().collectingPollen);
+					} else {
+						uicontroller.showErrorMessage ("You need to buy Plants to Build!");
 					}
 					break;
 
@@ -106,10 +109,13 @@ public class Build : MonoBehaviour {
 						// Dandelion value
 						GameManager.gridValues [SnapMovement.staticCurrentPos] = AppleTree.getNectarValue ();
 						GameManager.grid [SnapMovement.staticCurrentPos] = 2;
+						Inventory.decrementItem (currentBuildObject);
 
 						//allObjects [SnapMovement.staticCurrentPos] = aptree.gameObject.GetComponent<AppleTree>();
 
 						//print ("test: " + allObjects [SnapMovement.staticCurrentPos].name);
+					} else {
+						uicontroller.showErrorMessage ("You need to buy Plants to Build!");
 					}
 					break;
 
@@ -122,6 +128,9 @@ public class Build : MonoBehaviour {
 						// Dandelion value
 						GameManager.gridValues [SnapMovement.staticCurrentPos] = OrangeTree.getNectarValue();
 						GameManager.grid [SnapMovement.staticCurrentPos] = 2;
+						Inventory.decrementItem (currentBuildObject);
+					} else {
+						uicontroller.showErrorMessage ("You need to buy Plants to Build!");
 					}
 					break;
 
@@ -134,11 +143,14 @@ public class Build : MonoBehaviour {
 						// Dandelion value
 						GameManager.gridValues [SnapMovement.staticCurrentPos] = Sunflowers.getNectarValue();
 						GameManager.grid [SnapMovement.staticCurrentPos] = 2;
+						Inventory.decrementItem (currentBuildObject);
+					} else {
+						uicontroller.showErrorMessage ("You need to buy Plants to Build!");
 					}
 					break;
 				}
 
-				Inventory.decrementItem (currentBuildObject);
+
 
 				GameManager.numOfPlants++;
 
@@ -146,6 +158,7 @@ public class Build : MonoBehaviour {
 				SnapMovement.restoreModel ();
 				GameManager.instance.resetState ();
 				uicontroller.openNeutralPanel ();
+				uicontroller.openBankPanel ();
 				//Bank.subtractNectar (10);
 			}
 

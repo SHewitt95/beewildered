@@ -28,6 +28,8 @@ public class UIController : MonoBehaviour {
 	public Text swarmCurrentPatches;
 	public Text swarmSpeed;
 
+	public Text errorMessage;
+
 	public Button build;
 	public Button collect;
 	public Button hiveButton;
@@ -61,6 +63,8 @@ public class UIController : MonoBehaviour {
 		swarmPatchLimit.enabled = false;
 		swarmCurrentPatches.enabled = false;
 		swarmSpeed.enabled = false;
+
+		errorMessage.enabled = false;
 
 
 		howToPlay.gameObject.SetActive(false);
@@ -96,6 +100,17 @@ public class UIController : MonoBehaviour {
 			//collectButton = GameObject.Find ("Collect Button").SetActive (true);
 		}
 
+	}
+
+	public void showErrorMessage(string message) {
+		errorMessage.enabled = true;
+		errorMessage.text = message;
+		StartCoroutine (hideErrorMessage ()); 
+	}
+
+	IEnumerator hideErrorMessage() {
+		yield return new WaitForSeconds (3f);
+		errorMessage.enabled = false;
 	}
 
 	public void openSwarmPanel() {
@@ -249,7 +264,7 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void sendNeutralInput () {
-		GameManager.instance.checkUserInput ("x");
+		GameManager.instance.checkUserInput ("camera");
 	}
 
 	public void closeNeutral() {
@@ -274,12 +289,14 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void openBankPanel() {
+		bankPanel.gameObject.SetActive (true);
 		for (int i = 0; i < bankPanel.transform.childCount; i++) {
 			bankPanel.transform.GetChild (i).gameObject.SetActive (true);
 		}
 	}
 
 	public void closeBankPanel() {
+		bankPanel.gameObject.SetActive (false);
 		for (int i = 0; i < bankPanel.transform.childCount; i++) {
 			bankPanel.transform.GetChild (i).gameObject.SetActive (false);
 		}
@@ -303,13 +320,13 @@ public class UIController : MonoBehaviour {
 	public void StartButton() {
 		openingMenu.gameObject.SetActive (false);
 		GameManager.introPanel.SetActive (true);
-		GameManager.instance.checkUserInput ("y");
+		GameManager.instance.checkUserInput ("intro");
 
 		//GameManager.instance.checkUserInput ("v");
 	}
 
 	public void howToPlayButton() {
-		//openingMenu.gameObject.SetActive (false);
+		openingMenu.gameObject.SetActive (false);
 		howToPlay.gameObject.SetActive(true);
 	}
 
@@ -318,10 +335,30 @@ public class UIController : MonoBehaviour {
 		howToPlay.gameObject.SetActive(false);
 	}
 
+	public void openOpeningMenu() {
+		openingMenu.gameObject.SetActive (true);
+	}
+
+	public void closeOpeningMenu() {
+		openingMenu.gameObject.SetActive (false);
+	}
+
+	public void openHowToPlay() {
+		howToPlay.gameObject.SetActive(true);
+	}
+
+	public void closeHowToPlay() {
+		howToPlay.gameObject.SetActive(false);
+
+		if (GameManager.instance.GetCurrentState() == GameManager.GameStates.START) {
+			openingMenu.gameObject.SetActive (true);
+		}
+	}
+
 	public void sendCollectInput() {
 
 		if (GameManager.numOfPlants > 0) {
-			GameManager.instance.checkUserInput ("v");
+			GameManager.instance.checkUserInput ("collect");
 		}
 
 		selectedSwarmPanel.gameObject.SetActive (false);
@@ -330,7 +367,7 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void sendBuildInput() {
-		GameManager.instance.checkUserInput ("b");
+		GameManager.instance.checkUserInput ("build");
 		//collectPanel.gameObject.SetActive (false);
 
 		//print (Input.GetButtonDown("Swarm 1"));

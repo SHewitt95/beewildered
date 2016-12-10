@@ -92,12 +92,10 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		print ("Num of Plants: " + numOfPlants);
-
 		// TODO: Make it so random user input is ignored. They must follow the game sequence.
 		// Ex: While intro is going, the BUILD input should not function.
-		if (currentState != GameStates.INTRO) {
-			checkUserInput (Input.inputString);
+		if (currentState == GameStates.CAMERA) {
+			//checkUserInput (Input.inputString);
 		}
 			
 		switch (GetCurrentState()) {
@@ -167,22 +165,22 @@ public class GameManager : MonoBehaviour {
 	public void checkUserInput(string input) {
 		//Debug.Log (input);
 		switch(input) {
-			case "b":
+			case "build":
 			currentState = GameStates.BUILD;
 				break;
-			case "v":
+			case "collect":
 			currentState = GameStates.COLLECT;
 				break;
 			case "n":
-			currentState = GameStates.DISTRIBUTE;
+			//currentState = GameStates.DISTRIBUTE;
 				break;
-			case "m":
+			case "hive":
 			currentState = GameStates.HIVE;
 				break;
-			case "x":
+			case "camera":
 			currentState = GameStates.CAMERA;
 			break;
-		case "y":
+		case "intro":
 			currentState = GameStates.INTRO;
 			break;
 		default:
